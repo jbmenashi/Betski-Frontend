@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
 import './App.css';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import Landing from './containers/Landing';
+import AccountContainer from './containers/AccountContainer'
+
 
 const mapStateToProps = (state) => {
   return {
+    currentUserId: state.currentUserId,
     games: state.games
   }
 }
@@ -27,23 +31,17 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.games);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Router>
+          <>
+            <nav>
+            This is the Nav Bar
+            </nav>
+            <Route path="/" exact component={Landing}/>
+            <Route path="/account" component={AccountContainer}/>
+          </>
+        </Router>
       </div>
     );
   }

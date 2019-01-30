@@ -1,12 +1,15 @@
 const initialState = {
+  currentUserId: undefined,
+  loginInput: "",
   games: []
 }
 
 function reducer(state = initialState, action) {
-  console.log(state);
   switch (action.type) {
     case "FETCH_GAMES":
       return {...state, games: action.payload}
+    case "INPUT_LOGIN":
+      return {...state, loginInput: action.payload}
     default:
       return state
   }
