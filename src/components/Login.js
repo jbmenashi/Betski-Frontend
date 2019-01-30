@@ -11,17 +11,42 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    inputLogin: (event) => dispatch({type: "INPUT_LOGIN", payload: event.target.value})
+    inputLogin: (event) => dispatch({type: "INPUT_LOGIN", payload: event.target.value}),
+    submitLogin: (userId) => dispatch({type: "SUBMIT_LOGIN", payload: userId})
   }
 }
 
 class Login extends Component {
 
+  setCurrentUser = (input) => {
+    fetch('http://localhost:3000/api/v1/users/')
+    .then(res => res.json())
+    .then(data => {
+      let foundUser = data.find(user => user.username === input)
+      foundUser !== undefined ? this.props.submitLogin(foundUser.id) :
+      fetch('http://localhost:3000/api/v1/users/', {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json',
+          'Accept':'application/json'
+        },
+        body: JSON.stringify({
+          username: input,
+          balance: 1000
+        })
+      })
+      .then(res => res.json())
+      .then(newUser => {
+        this.props.submitLogin(newUser.id)
+      })
+    })
+  }
+
   render() {
     return (
       <div>
-        <input onChange={this.props.inputLogin} type="text" value={this.props.loginInput}/>
-        <button>Submit</button>
+        <input type="text" onChange={this.props.inputLogin} value={this.props.loginInput}/>
+        <button type="submit" onClick={() => this.setCurrentUser(this.props.loginInput)}>Submit</button>
       </div>
     );
   }
