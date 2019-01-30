@@ -19,12 +19,12 @@ const mapDispatchToProps = (dispatch) => {
 class Login extends Component {
 
   setCurrentUser = (input) => {
-    fetch('http://localhost:3000/api/v1/users/')
+    fetch('http://localhost:3000/api/v1/users')
     .then(res => res.json())
     .then(data => {
       let foundUser = data.find(user => user.username === input)
-      foundUser !== undefined ? this.props.submitLogin(foundUser.id) :
-      fetch('http://localhost:3000/api/v1/users/', {
+      foundUser != undefined ? this.props.submitLogin(foundUser.id) :
+      fetch('http://localhost:3000/api/v1/users', {
         method: 'POST',
         headers: {
           'Content-Type':'application/json',
