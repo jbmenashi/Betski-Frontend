@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom'
 
 const mapStateToProps = (state) => {
   return {
     currentUserId: state.currentUserId,
+    currentUserName: state.currentUserName,
+    currentUserBalance: state.currentUserBalance,
     loginInput: state.loginInput
   }
 }
