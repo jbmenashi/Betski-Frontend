@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     inputLogin: (event) => dispatch({type: "INPUT_LOGIN", payload: event.target.value}),
-    submitLogin: (userId) => dispatch({type: "SUBMIT_LOGIN", payload: userId})
+    submitLogin: (userId, userName, userBalance) => dispatch({type: "SUBMIT_LOGIN", id: userId, name: userName, balance: userBalance })
   }
 }
 
@@ -24,7 +24,7 @@ class Login extends Component {
     .then(data => {
       let foundUser = data.find(user => user.username === input)
       if (foundUser != undefined) {
-        this.props.submitLogin(foundUser.id)
+        this.props.submitLogin(foundUser.id, foundUser.username, foundUser.balance)
       }
       else {
         fetch('http://localhost:3000/api/v1/users', {
@@ -40,7 +40,7 @@ class Login extends Component {
         })
         .then(res => res.json())
         .then(newUser => {
-          this.props.submitLogin(newUser.id)
+          this.props.submitLogin(newUser.id, newUser.username, newUser.balance)
         })
       }
     })
@@ -49,6 +49,7 @@ class Login extends Component {
   render() {
     return (
       <div>
+        <p>Login</p>
         <input type="text" onChange={this.props.inputLogin} value={this.props.loginInput}/>
         <button type="submit" onClick={() => this.setCurrentUser(this.props.loginInput)}>Submit</button>
       </div>

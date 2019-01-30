@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import AccountDetails from '../components/AccountDetails'
 
 class AccountContainer extends Component {
 
   render() {
     return (
       <div>
-      How About This?
+      <AccountDetails/>
       </div>
     );
   }

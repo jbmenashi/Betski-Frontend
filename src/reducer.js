@@ -1,5 +1,7 @@
 const initialState = {
   currentUserId: undefined,
+  currentUserName: undefined,
+  currentUserBalance: undefined,
   loginInput: "",
   games: []
 }
@@ -11,7 +13,7 @@ function reducer(state = initialState, action) {
     case "INPUT_LOGIN":
       return {...state, loginInput: action.payload}
     case "SUBMIT_LOGIN":
-      return {...state, currentUserId: action.payload}
+      return {...state, currentUserId: action.id, currentUserName: action.name, currentUserBalance: action.balance}
     default:
       return state
   }
