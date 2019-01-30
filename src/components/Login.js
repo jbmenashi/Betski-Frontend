@@ -23,22 +23,26 @@ class Login extends Component {
     .then(res => res.json())
     .then(data => {
       let foundUser = data.find(user => user.username === input)
-      foundUser != undefined ? this.props.submitLogin(foundUser.id) :
-      fetch('http://localhost:3000/api/v1/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type':'application/json',
-          'Accept':'application/json'
-        },
-        body: JSON.stringify({
-          username: input,
-          balance: 1000
+      if (foundUser != undefined) {
+        this.props.submitLogin(foundUser.id)
+      }
+      else {
+        fetch('http://localhost:3000/api/v1/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type':'application/json',
+            'Accept':'application/json'
+          },
+          body: JSON.stringify({
+            username: input,
+            balance: 1000
+          })
         })
-      })
-      .then(res => res.json())
-      .then(newUser => {
-        this.props.submitLogin(newUser.id)
-      })
+        .then(res => res.json())
+        .then(newUser => {
+          this.props.submitLogin(newUser.id)
+        })
+      }
     })
   }
 
