@@ -38,7 +38,7 @@ class App extends Component {
             <nav>
             This is the Nav Bar
             </nav>
-            <Route exact path="/" render={() => (this.props.currentUserId != undefined ? (<Redirect to="/account"/>) : (<Landing/>))}/>
+            <Route exact path="/" render={() => (this.props.currentUserId !== undefined ? (<Redirect to="/account"/>) : (<Landing/>))}/>
             <Route path="/account" component={AccountContainer}/>
           </>
         </Router>

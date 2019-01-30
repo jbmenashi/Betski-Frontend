@@ -23,7 +23,7 @@ class Login extends Component {
     .then(res => res.json())
     .then(data => {
       let foundUser = data.find(user => user.username === input)
-      if (foundUser != undefined) {
+      if (foundUser !== undefined) {
         this.props.submitLogin(foundUser.id, foundUser.username, foundUser.balance)
       }
       else {
