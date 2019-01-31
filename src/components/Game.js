@@ -1,5 +1,24 @@
 import React, { Component } from 'react';
-var moment = require('moment')
+import {connect} from 'react-redux'
+
+var moment = require('moment');
+
+const mapDispatchToProps = dispatch => {
+  return {
+    selectBet: (odds, awayTeam, homeTeam, spread, total, betType) => {
+      dispatch({
+        type: "SELECT_BET",
+        odds: odds,
+        awayTeam: awayTeam,
+        homeTeam: homeTeam,
+        spread: spread,
+        total: total,
+        betType: betType
+      })
+    }
+  }
+}
+
 
 class Game extends Component {
 
@@ -19,16 +38,16 @@ class Game extends Component {
             <tr>
               <td><img src={this.props.away_logo} alt={this.props.away_team} width="60" height="60"/></td>
               <td>{this.props.away_team}</td>
-              <td>{this.props.odds[0].away_over}</td>
-              <td>{this.props.odds[1].away_over}</td>
-              <td>{this.props.odds[2].away_over}</td>
+              <td onClick={() => this.props.selectBet(this.props.odds[0].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, this.props.odds[0].line)}>{this.props.odds[0].away_over}</td>
+              <td onClick={() => this.props.selectBet(this.props.odds[1].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, this.props.odds[1].line)}>{this.props.odds[1].away_over}</td>
+              <td onClick={() => this.props.selectBet(this.props.odds[2].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, this.props.odds[2].line)}>{this.props.odds[2].away_over}</td>
             </tr>
             <tr>
               <td><img src={this.props.home_logo} alt={this.props.home_team} width="60" height="60"/></td>
               <td>{this.props.home_team}</td>
-              <td>{this.props.odds[0].home_under}</td>
-              <td>{this.props.odds[1].home_under}</td>
-              <td>{this.props.odds[2].home_under}</td>
+              <td onClick={() => this.props.selectBet(this.props.odds[0].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, this.props.odds[0].line)}>{this.props.odds[0].home_under}</td>
+              <td onClick={() => this.props.selectBet(this.props.odds[1].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, this.props.odds[1].line)}>{this.props.odds[1].home_under}</td>
+              <td onClick={() => this.props.selectBet(this.props.odds[2].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, this.props.odds[2].line)}>{this.props.odds[2].home_under}</td>
             </tr>
           </tbody>
         </table>
@@ -38,4 +57,4 @@ class Game extends Component {
 
 }
 
-export default Game;
+export default connect(null, mapDispatchToProps)(Game);
