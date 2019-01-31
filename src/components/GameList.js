@@ -12,7 +12,7 @@ class GameList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="gameList">
         {this.props.filteredGames.map(game => <Game {...game} key={game.id}/>)}
       </div>
     );

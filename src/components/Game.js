@@ -26,7 +26,7 @@ class Game extends Component {
     return (
       <div>
         <table>
-        <caption>{moment(this.props.date).format('LLLL')}, {this.props.spread}, total: {this.props.over_under}</caption>
+        <caption>{moment(this.props.date).format('llll')}, spread: {this.props.spread}, total: {this.props.over_under}</caption>
           <tbody>
             <tr>
               <th>.</th>
@@ -38,16 +38,16 @@ class Game extends Component {
             <tr>
               <td><img src={this.props.away_logo} alt={this.props.away_team} width="60" height="60"/></td>
               <td>{this.props.away_team}</td>
-              <td onClick={() => this.props.selectBet(this.props.odds[0].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, this.props.odds[0].line)}>{this.props.odds[0].away_over}</td>
-              <td onClick={() => this.props.selectBet(this.props.odds[1].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, this.props.odds[1].line)}>{this.props.odds[1].away_over}</td>
-              <td onClick={() => this.props.selectBet(this.props.odds[2].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, this.props.odds[2].line)}>{this.props.odds[2].away_over}</td>
+              <td onClick={() => this.props.selectBet(this.props.odds[0].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[0].line, "A"])}>{this.props.odds[0].away_over}</td>
+              <td onClick={() => this.props.selectBet(this.props.odds[1].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[1].line, "A"])}>{this.props.odds[1].away_over}</td>
+              <td onClick={() => this.props.selectBet(this.props.odds[2].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[2].line, "A"])}>{this.props.odds[2].away_over}</td>
             </tr>
             <tr>
               <td><img src={this.props.home_logo} alt={this.props.home_team} width="60" height="60"/></td>
               <td>{this.props.home_team}</td>
-              <td onClick={() => this.props.selectBet(this.props.odds[0].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, this.props.odds[0].line)}>{this.props.odds[0].home_under}</td>
-              <td onClick={() => this.props.selectBet(this.props.odds[1].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, this.props.odds[1].line)}>{this.props.odds[1].home_under}</td>
-              <td onClick={() => this.props.selectBet(this.props.odds[2].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, this.props.odds[2].line)}>{this.props.odds[2].home_under}</td>
+              <td onClick={() => this.props.selectBet(this.props.odds[0].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[0].line, "H"])}>{this.props.odds[0].home_under}</td>
+              <td onClick={() => this.props.selectBet(this.props.odds[1].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[1].line, "H"])}>{this.props.odds[1].home_under}</td>
+              <td onClick={() => this.props.selectBet(this.props.odds[2].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[2].line, "H"])}>{this.props.odds[2].home_under}</td>
             </tr>
           </tbody>
         </table>

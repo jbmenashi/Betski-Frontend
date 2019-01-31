@@ -10,7 +10,8 @@ const initialState = {
   selectedHomeTeam: undefined,
   selectedSpread: undefined,
   selectedTotal: undefined,
-  selectedBetType: undefined
+  selectedBetType: undefined,
+  isBetSelected: false
 }
 
 function reducer(state = initialState, action) {
@@ -22,10 +23,11 @@ function reducer(state = initialState, action) {
     case "SUBMIT_LOGIN":
       return {...state, currentUserId: action.id, currentUserName: action.name, currentUserBalance: action.balance}
     case "SELECT_SPORT":
-      return {...state, filteredGames: state.games.filter(game => game.sport === action.payload)}
+      return {...state, filteredGames: state.games.filter(game => game.sport === action.payload), isBetSelected: false}
     case "SELECT_BET":
       return {
         ...state,
+        isBetSelected: true,
         selectedOdds: action.odds,
         selectedAwayTeam: action.awayTeam,
         selectedHomeTeam: action.homeTeam,
