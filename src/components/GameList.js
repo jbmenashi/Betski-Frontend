@@ -13,7 +13,7 @@ class GameList extends Component {
   render() {
     return (
       <div>
-        {this.props.filteredGames.map(game => <Game {...game} id={game.id}/>)}
+        {this.props.filteredGames.map(game => <Game {...game} key={game.id}/>)}
       </div>
     );
   }
