@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import SportContainer from './SportContainer'
 
 const mapStateToProps = (state) => {
   return {
@@ -26,7 +27,7 @@ class NewTicketContainer extends Component {
   render() {
     return (
       <div>
-
+        <SportContainer/>
       </div>
     );
   }
