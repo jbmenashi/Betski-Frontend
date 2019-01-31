@@ -15,7 +15,8 @@ const initialState = {
   isBetSelected: false,
   practiceWagerInput: 100,
   currentTicketId: undefined,
-  isActiveTicket: false
+  isActiveTicket: false,
+  activeBets: []
 }
 
 function reducer(state = initialState, action) {
@@ -45,6 +46,8 @@ function reducer(state = initialState, action) {
       return {...state, practiceWagerInput: action.payload}
     case "SET_CURRENT_TICKET":
       return {...state, currentTicketId: action.payload, isActiveTicket: true}
+    case "PUSH_BET_TO_ACTIVE_BETS":
+      return {...state, activeBets: [...state.activeBets, action.payload]}
     default:
       return state
   }

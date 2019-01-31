@@ -9,3 +9,8 @@
 .betInfo {
   float: right;
 }
+
+.ticketInfo {
+  clear: right;
+  float: right;
+}

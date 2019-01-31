@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import BetList from './BetList'
 
 class TicketInfo extends Component {
 
   render() {
     return (
-      <div>test</div>
+      <div className="ticketInfo">
+      <h2>New Ticket</h2>
+      <BetList/>
+      </div>
     );
   }
 
