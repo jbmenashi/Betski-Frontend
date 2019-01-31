@@ -5,6 +5,7 @@ const initialState = {
   loginInput: "",
   games: [],
   filteredGames: [],
+  currentGameId: undefined,
   selectedOdds: undefined,
   selectedAwayTeam: undefined,
   selectedHomeTeam: undefined,
@@ -12,7 +13,9 @@ const initialState = {
   selectedTotal: undefined,
   selectedBetType: undefined,
   isBetSelected: false,
-  practiceWagerInput: 100
+  practiceWagerInput: 100,
+  currentTicketId: undefined,
+  isActiveTicket: false
 }
 
 function reducer(state = initialState, action) {
@@ -29,6 +32,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         isBetSelected: true,
+        currentGameId: action.gameId,
         selectedOdds: action.odds,
         selectedAwayTeam: action.awayTeam,
         selectedHomeTeam: action.homeTeam,
@@ -39,6 +43,8 @@ function reducer(state = initialState, action) {
       }
     case "INPUT_PRACTICE_WAGER":
       return {...state, practiceWagerInput: action.payload}
+    case "SET_CURRENT_TICKET":
+      return {...state, currentTicketId: action.payload, isActiveTicket: true}
     default:
       return state
   }

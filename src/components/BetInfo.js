@@ -3,19 +3,24 @@ import {connect} from 'react-redux'
 
 const mapStateToProps = state => {
   return {
+    currentUserId: state.currentUserId,
+    currentGameId: state.currentGameId,
+    currentTicketId: state.currentTicketId,
     selectedOdds: state.selectedOdds,
     selectedAwayTeam: state.selectedAwayTeam,
     selectedHomeTeam: state.selectedHomeTeam,
     selectedSpread: state.selectedSpread,
     selectedTotal: state.selectedTotal,
     selectedBetType: state.selectedBetType,
-    practiceWagerInput: state.practiceWagerInput
+    practiceWagerInput: state.practiceWagerInput,
+    isActiveTicket: state.isActiveTicket
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    inputPracticeWager: (event) => dispatch({type: "INPUT_PRACTICE_WAGER", payload: event.target.value})
+    inputPracticeWager: (event) => dispatch({type: "INPUT_PRACTICE_WAGER", payload: event.target.value}),
+    setCurrentTicket: (ticketId) => dispatch({type: "SET_CURRENT_TICKET", payload: ticketId})
   }
 }
 
@@ -28,6 +33,52 @@ class BetInfo extends Component {
     else {
       return (wager * ((Math.abs(odds) + 100) / Math.abs(odds))).toFixed(0)
     }
+  }
+
+  addBetToTicket = () => {
+    !this.props.isActiveTicket ?
+    fetch('http://localhost:3000/api/v1/tickets', {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify({
+        user_id: this.props.currentUserId,
+        wager: 0,
+        payout: 0,
+        submitted: false,
+        closed: false
+      })
+    })
+    .then(res => res.json())
+    .then(newTicket => {
+      this.props.setCurrentTicket(newTicket.id)
+      fetch('http://localhost:3000/api/v1/bets', {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json',
+          'Accept':'application/json'
+        },
+        body: JSON.stringify({
+          game_id: this.props.currentGameId,
+          ticket_id: this.props.currentTicketId,
+          multiplier: this.props.selectedOdds > 0 ? ((Math.abs(this.props.selectedOdds) + 100) / 100) : ((Math.abs(this.props.selectedOdds) + 100) / Math.abs(this.props.selectedOdds))
+        })
+      })
+    }) :
+    fetch('http://localhost:3000/api/v1/bets', {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify({
+        game_id: this.props.currentGameId,
+        ticket_id: this.props.currentTicketId,
+        multiplier: this.props.selectedOdds > 0 ? ((Math.abs(this.props.selectedOdds) + 100) / 100) : ((Math.abs(this.props.selectedOdds) + 100) / Math.abs(this.props.selectedOdds))
+      })
+    })
   }
 
   render() {
@@ -55,6 +106,7 @@ class BetInfo extends Component {
       <strong>Wager Calculator:</strong>
       If you bet this much:<input type="number" onChange={this.props.inputPracticeWager} value={this.props.practiceWagerInput}/>
       You would receive: {this.calculatePayout(this.props.practiceWagerInput, this.props.selectedOdds)}
+      <button onClick={this.addBetToTicket}>Add Bet to Ticket</button>
       </div>
     );
   }

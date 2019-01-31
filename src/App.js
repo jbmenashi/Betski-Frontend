@@ -6,13 +6,11 @@ import Landing from './containers/Landing';
 import AccountContainer from './containers/AccountContainer'
 import NewTicketContainer from './containers/NewTicketContainer'
 
-
 const mapStateToProps = (state) => {
   return {
     currentUserId: state.currentUserId,
   }
 }
-
 
 class App extends Component {
   render() {
