@@ -11,7 +11,8 @@ const initialState = {
   selectedSpread: undefined,
   selectedTotal: undefined,
   selectedBetType: undefined,
-  isBetSelected: false
+  isBetSelected: false,
+  practiceWagerInput: 100
 }
 
 function reducer(state = initialState, action) {
@@ -33,8 +34,11 @@ function reducer(state = initialState, action) {
         selectedHomeTeam: action.homeTeam,
         selectedSpread: action.spread,
         selectedTotal: action.total,
-        selectedBetType: action.betType
+        selectedBetType: action.betType,
+        practiceWagerInput: 100
       }
+    case "INPUT_PRACTICE_WAGER":
+      return {...state, practiceWagerInput: action.payload}
     default:
       return state
   }
