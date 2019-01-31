@@ -23,10 +23,10 @@ class BetInfo extends Component {
 
   calculatePayout = (wager, odds) => {
     if (odds > 0) {
-      return wager * ((Math.abs(odds) + 100) / 100)
+      return (wager * ((Math.abs(odds) + 100) / 100)).toFixed(0)
     }
     else {
-      return wager * ((Math.abs(odds) + 100) / Math.abs(odds))
+      return (wager * ((Math.abs(odds) + 100) / Math.abs(odds))).toFixed(0)
     }
   }
 
@@ -54,7 +54,7 @@ class BetInfo extends Component {
       {info}
       <strong>Wager Calculator:</strong>
       If you bet this much:<input type="number" onChange={this.props.inputPracticeWager} value={this.props.practiceWagerInput}/>
-      You would receive:<input readOnly type="number" value={this.calculatePayout(this.props.practiceWagerInput, this.props.selectedOdds)}/>
+      You would receive: {this.calculatePayout(this.props.practiceWagerInput, this.props.selectedOdds)}
       </div>
     );
   }
