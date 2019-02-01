@@ -5,7 +5,7 @@ class Bet extends Component {
   render() {
     return (
       <div>
-        bet
+        {this.props.team}
       </div>
     );
   }

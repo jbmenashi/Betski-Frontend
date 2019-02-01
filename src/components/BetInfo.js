@@ -15,6 +15,7 @@ const mapStateToProps = state => {
     practiceWagerInput: state.practiceWagerInput,
     isActiveTicket: state.isActiveTicket,
     activeBets: state.activeBets,
+    activeMultiplier: state.activeMultiplier,
     betForPost: state.betForPost
   }
 }
@@ -23,7 +24,9 @@ const mapDispatchToProps = dispatch => {
   return {
     inputPracticeWager: (event) => dispatch({type: "INPUT_PRACTICE_WAGER", payload: event.target.value}),
     setCurrentTicket: (ticketId) => dispatch({type: "SET_CURRENT_TICKET", payload: ticketId}),
-    pushActiveBet: (bet) => dispatch({type: "PUSH_BET_TO_ACTIVE_BETS", payload: bet})
+    pushActiveBet: (bet) => dispatch({type: "PUSH_BET_TO_ACTIVE_BETS", payload: bet}),
+    initActiveMultiplier: (multiplier) => dispatch({type: "INIT_ACTIVE_MULTIPLIER", payload: multiplier}),
+    calcActiveMulitplier: (multiplier) => dispatch({type: "CALC_ACTIVE_MULTIPLIER", payload: multiplier})
   }
 }
 
@@ -74,7 +77,10 @@ class BetInfo extends Component {
         })
       })
       .then(res => res.json())
-      .then(bet => this.props.pushActiveBet(bet))
+      .then(bet => {
+        this.props.pushActiveBet(bet)
+        this.props.initActiveMultiplier(bet.multiplier)
+      })
     }) :
     fetch('http://localhost:3000/api/v1/bets', {
       method: 'POST',
@@ -93,11 +99,13 @@ class BetInfo extends Component {
       })
     })
     .then(res => res.json())
-    .then(bet => this.props.pushActiveBet(bet))
+    .then(bet => {
+      this.props.pushActiveBet(bet)
+      this.props.calcActiveMulitplier(bet.multiplier)
+    })
   }
 
   render() {
-    console.log(this.props.betForPost[0]);
     let info;
     if (this.props.selectedBetType[0] === "spread") {
       this.props.selectedBetType[1] === "A" ?

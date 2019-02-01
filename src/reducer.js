@@ -14,9 +14,11 @@ const initialState = {
   selectedBetType: undefined,
   isBetSelected: false,
   practiceWagerInput: 100,
+  wagerInput: 0,
   currentTicketId: undefined,
   isActiveTicket: false,
   activeBets: [],
+  activeMultiplier: 0,
   betForPost: [],
 }
 
@@ -46,10 +48,16 @@ function reducer(state = initialState, action) {
       }
     case "INPUT_PRACTICE_WAGER":
       return {...state, practiceWagerInput: action.payload}
+    case "INPUT_WAGER":
+      return {...state, wagerInput: action.payload}
     case "SET_CURRENT_TICKET":
       return {...state, currentTicketId: action.payload, isActiveTicket: true}
     case "PUSH_BET_TO_ACTIVE_BETS":
       return {...state, activeBets: [...state.activeBets, action.payload]}
+    case "INIT_ACTIVE_MULTIPLIER":
+      return {...state, activeMultiplier: action.payload}
+    case "CALC_ACTIVE_MULTIPLIER":
+      return {...state, activeMultiplier: state.activeMultiplier * action.payload}
     default:
       return state
   }
