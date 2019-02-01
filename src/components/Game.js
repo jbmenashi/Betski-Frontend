@@ -5,7 +5,7 @@ var moment = require('moment');
 
 const mapDispatchToProps = dispatch => {
   return {
-    selectBet: (gameId, odds, awayTeam, homeTeam, spread, total, betType) => {
+    selectBet: (gameId, odds, awayTeam, homeTeam, spread, total, betType, betForPost) => {
       dispatch({
         type: "SELECT_BET",
         gameId: gameId,
@@ -14,7 +14,8 @@ const mapDispatchToProps = dispatch => {
         homeTeam: homeTeam,
         spread: spread,
         total: total,
-        betType: betType
+        betType: betType,
+        betForPost: betForPost
       })
     }
   }
@@ -22,6 +23,22 @@ const mapDispatchToProps = dispatch => {
 
 
 class Game extends Component {
+
+  awaySpread = (spread) => {
+    if (spread < 0) {
+      return Math.abs(spread)
+    } else {
+      return -Math.abs(spread)
+    }
+  }
+
+  homeSpread = (spread) => {
+    if (spread < 0) {
+      return spread
+    } else {
+      return Math.abs(spread)
+    }
+  }
 
   render() {
     return (
@@ -39,16 +56,16 @@ class Game extends Component {
             <tr>
               <td><img src={this.props.away_logo} alt={this.props.away_team} width="60" height="60"/></td>
               <td>{this.props.away_team}</td>
-              <td onClick={() => this.props.selectBet(this.props.id, this.props.odds[0].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[0].line, "A"])}>{this.props.odds[0].away_over}</td>
-              <td onClick={() => this.props.selectBet(this.props.id, this.props.odds[1].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[1].line, "A"])}>{this.props.odds[1].away_over}</td>
-              <td onClick={() => this.props.selectBet(this.props.id, this.props.odds[2].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[2].line, "A"])}>{this.props.odds[2].away_over}</td>
+              <td onClick={() => this.props.selectBet(this.props.id, this.props.odds[0].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[0].line, "A"], [this.props.away_team, this.props.odds[0].line, this.awaySpread(this.props.spread), this.props.odds[0].away_over])}>{this.props.odds[0].away_over}</td>
+              <td onClick={() => this.props.selectBet(this.props.id, this.props.odds[1].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[1].line, "A"], [this.props.away_team, this.props.odds[1].line, this.props.over_under, this.props.odds[1].away_over])}>{this.props.odds[1].away_over}</td>
+              <td onClick={() => this.props.selectBet(this.props.id, this.props.odds[2].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[2].line, "A"], [this.props.away_team, this.props.odds[2].line, 0, this.props.odds[2].away_over])}>{this.props.odds[2].away_over}</td>
             </tr>
             <tr>
               <td><img src={this.props.home_logo} alt={this.props.home_team} width="60" height="60"/></td>
               <td>{this.props.home_team}</td>
-              <td onClick={() => this.props.selectBet(this.props.id, this.props.odds[0].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[0].line, "H"])}>{this.props.odds[0].home_under}</td>
-              <td onClick={() => this.props.selectBet(this.props.id, this.props.odds[1].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[1].line, "H"])}>{this.props.odds[1].home_under}</td>
-              <td onClick={() => this.props.selectBet(this.props.id, this.props.odds[2].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[2].line, "H"])}>{this.props.odds[2].home_under}</td>
+              <td onClick={() => this.props.selectBet(this.props.id, this.props.odds[0].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[0].line, "H"], [this.props.home_team, this.props.odds[0].line, this.homeSpread(this.props.spread), this.props.odds[0].home_under])}>{this.props.odds[0].home_under}</td>
+              <td onClick={() => this.props.selectBet(this.props.id, this.props.odds[1].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[1].line, "H"], [this.props.home_team, this.props.odds[1].line, this.props.over_under, this.props.odds[1].home_under])}>{this.props.odds[1].home_under}</td>
+              <td onClick={() => this.props.selectBet(this.props.id, this.props.odds[2].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[2].line, "H"], [this.props.home_team, this.props.odds[2].line, 0, this.props.odds[2].home_under])}>{this.props.odds[2].home_under}</td>
             </tr>
           </tbody>
         </table>

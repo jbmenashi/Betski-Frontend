@@ -16,7 +16,8 @@ const initialState = {
   practiceWagerInput: 100,
   currentTicketId: undefined,
   isActiveTicket: false,
-  activeBets: []
+  activeBets: [],
+  betForPost: [],
 }
 
 function reducer(state = initialState, action) {
@@ -40,6 +41,7 @@ function reducer(state = initialState, action) {
         selectedSpread: action.spread,
         selectedTotal: action.total,
         selectedBetType: action.betType,
+        betForPost: action.betForPost,
         practiceWagerInput: 100
       }
     case "INPUT_PRACTICE_WAGER":

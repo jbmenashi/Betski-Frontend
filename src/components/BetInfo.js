@@ -14,7 +14,8 @@ const mapStateToProps = state => {
     selectedBetType: state.selectedBetType,
     practiceWagerInput: state.practiceWagerInput,
     isActiveTicket: state.isActiveTicket,
-    activeBets: state.activeBets
+    activeBets: state.activeBets,
+    betForPost: state.betForPost
   }
 }
 
@@ -65,7 +66,11 @@ class BetInfo extends Component {
         body: JSON.stringify({
           game_id: this.props.currentGameId,
           ticket_id: this.props.currentTicketId,
-          multiplier: this.props.selectedOdds > 0 ? ((Math.abs(this.props.selectedOdds) + 100) / 100) : ((Math.abs(this.props.selectedOdds) + 100) / Math.abs(this.props.selectedOdds))
+          multiplier: this.props.selectedOdds > 0 ? ((Math.abs(this.props.selectedOdds) + 100) / 100) : ((Math.abs(this.props.selectedOdds) + 100) / Math.abs(this.props.selectedOdds)),
+          team: this.props.betForPost[0],
+          variety: this.props.betForPost[1],
+          line: this.props.betForPost[2],
+          odds: this.props.betForPost[3]
         })
       })
       .then(res => res.json())
@@ -80,7 +85,11 @@ class BetInfo extends Component {
       body: JSON.stringify({
         game_id: this.props.currentGameId,
         ticket_id: this.props.currentTicketId,
-        multiplier: this.props.selectedOdds > 0 ? ((Math.abs(this.props.selectedOdds) + 100) / 100) : ((Math.abs(this.props.selectedOdds) + 100) / Math.abs(this.props.selectedOdds))
+        multiplier: this.props.selectedOdds > 0 ? ((Math.abs(this.props.selectedOdds) + 100) / 100) : ((Math.abs(this.props.selectedOdds) + 100) / Math.abs(this.props.selectedOdds)),
+        team: this.props.betForPost[0],
+        variety: this.props.betForPost[1],
+        line: this.props.betForPost[2],
+        odds: this.props.betForPost[3]
       })
     })
     .then(res => res.json())
@@ -88,6 +97,7 @@ class BetInfo extends Component {
   }
 
   render() {
+    console.log(this.props.betForPost[0]);
     let info;
     if (this.props.selectedBetType[0] === "spread") {
       this.props.selectedBetType[1] === "A" ?
@@ -99,7 +109,7 @@ class BetInfo extends Component {
       info = <p>This is an Over/Under bet. You bet that the total points scored by both teams will be <strong>at least</strong> {this.props.selectedTotal}</p> :
       info = <p>This is an Over/Under bet. You bet that the total points scored by both teams will be <strong>less than</strong> {this.props.selectedTotal}</p>
     }
-    else {
+    else if (this.props.selectedBetType[0] === "moneyline") {
       this.props.selectedBetType[1] === "A" ?
       info = <p>This is a Moneyline bet. You bet that the {this.props.selectedAwayTeam} will <strong>win the game</strong></p> :
       info = <p>This is a Moneyline bet. You bet that the {this.props.selectedHomeTeam} will <strong>win the game</strong></p>
