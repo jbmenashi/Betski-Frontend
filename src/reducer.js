@@ -18,7 +18,7 @@ const initialState = {
   currentTicketId: undefined,
   isActiveTicket: false,
   activeBets: [],
-  activeMultiplier: 0,
+  activeMultiplier: 1,
   betForPost: [],
 }
 
@@ -58,6 +58,8 @@ function reducer(state = initialState, action) {
       return {...state, activeMultiplier: action.payload}
     case "CALC_ACTIVE_MULTIPLIER":
       return {...state, activeMultiplier: state.activeMultiplier * action.payload}
+    case "REMOVE_BET_FROM_ACTIVE":
+      return {...state, activeMultiplier: state.activeMultiplier / action.divide, activeBets: [...state.activeBets.slice(0, action.payload), ...state.activeBets.slice(action.payload + 1, state.activeBets.length)]}
     default:
       return state
   }

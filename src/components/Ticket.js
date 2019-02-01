@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-class TicketInfo extends Component {
+class Ticket extends Component {
 
   calculatePayout = (wager, multiplier) => {
     return (wager * multiplier).toFixed(0)
@@ -24,15 +24,17 @@ class TicketInfo extends Component {
   render() {
     return (
       <div className="ticketInfo">
-      <h2>New Ticket</h2>
+      <h2>Ticket</h2>
       <BetList/>
       <strong>Wager Calculator:</strong>
-      If you bet this much:<input type="number" onChange={this.props.inputWager} value={this.props.wagerInput}/>
-      You would receive: {this.calculatePayout(this.props.wagerInput, this.props.activeMultiplier)}
+      Wager:<input type="number" onChange={this.props.inputWager} value={this.props.wagerInput}/>
+      Payout (Wager + Winnings):{this.calculatePayout(this.props.wagerInput, this.props.activeMultiplier)}
+      <button>Submit Ticket</button>
+      <button>Cancel Ticket</button>
       </div>
     );
   }
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TicketInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(Ticket);

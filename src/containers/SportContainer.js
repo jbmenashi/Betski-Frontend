@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import GameList from '../components/GameList';
 import BetInfo from '../components/BetInfo';
-import TicketInfo from '../components/TicketInfo'
+import Ticket from '../components/Ticket'
 
 const mapStateToProps = (state) => {
   return {
@@ -27,7 +27,7 @@ class SportContainer extends Component {
         <img src="https://s3.us-east-2.amazonaws.com/betski-images/hockey.jpg" alt="NHL" width="150" height="150" onClick={() => this.props.selectSport("NHL")}/>
         {this.props.filteredGames.length > 0 ? <GameList/> : <></>}
         {this.props.isBetSelected ? <BetInfo/> : <></>}
-        {this.props.isActiveTicket ? <TicketInfo/> : <></>}
+        {this.props.isActiveTicket ? <Ticket/> : <></>}
       </div>
     );
   }
