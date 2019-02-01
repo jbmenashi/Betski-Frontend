@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import Bet from './Bet.js'
 
 const mapStateToProps = state => {
   return {
@@ -12,7 +13,9 @@ class BetList extends Component {
 
   render() {
     return (
-      <div></div>
+      <div>
+        {this.props.activeBets.map(bet => <Bet {...bet} key={bet.id}/>)}
+      </div>
     );
   }
 
