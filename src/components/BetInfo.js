@@ -54,7 +54,8 @@ class BetInfo extends Component {
         wager: 0,
         payout: 0,
         submitted: false,
-        closed: false
+        closed: false,
+        result: 'OPEN'
       })
     })
     .then(res => res.json())

@@ -1,4 +1,17 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+
+const mapStateToProps = state => {
+  return {
+    currentUserId: state.currentUserId,
+    currentUserBalance: state.currentUserBalance
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    adjustBalance: (payout) => dispatch({type: 'ADJUST_BALANCE', payload: payout})
+  }
+}
 
 class OpenTicket extends Component {
 
@@ -17,19 +30,43 @@ class OpenTicket extends Component {
     return mappedBets
   }
 
+  closeAndWin = ticketId => {
+    fetch(`http://localhost:3000/api/v1/tickets/${ticketId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify({
+        closed: true,
+        result: "WON"
+      })
+    })
+    this.props.adjustBalance(this.props.payout)
+    fetch(`http://localhost:3000/api/v1/users/${this.props.currentUserId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify({
+        balance: this.props.currentUserBalance + this.props.payout
+      })
+    })
+  }
+
   render() {
-    console.log(this.props)
     return (
       <div>
         Bets: {this.showBets(this.props.bets)}<br/>
         Wager: {this.props.wager}<br/>
         Payout: {this.props.payout}<br/>
-        <button>Win</button>
-        <button>Lose</button>
+        <button onClick={() => this.closeAndWin(this.props.id)}>Win</button>
+        <button onClick={() => this.closeAndLose(this.props.id)}>Lose</button>
       </div>
     );
   }
 
 }
 
-export default OpenTicket;
+export default connect(mapStateToProps, mapDispatchToProps)(OpenTicket);
