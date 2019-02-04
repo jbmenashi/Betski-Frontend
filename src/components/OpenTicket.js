@@ -4,12 +4,15 @@ import {connect} from 'react-redux'
 const mapStateToProps = state => {
   return {
     currentUserId: state.currentUserId,
-    currentUserBalance: state.currentUserBalance
+    currentUserBalance: state.currentUserBalance,
+    tickets: state.tickets,
+    closedTickets: state.closedTickets
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    adjustBalance: (payout) => dispatch({type: 'ADJUST_BALANCE', payload: payout})
+    adjustBalance: (payout) => dispatch({type: 'ADJUST_BALANCE', payload: payout}),
+    closeTicket: (index, ticket) => dispatch({type: 'CLOSE_TICKET', index: index, ticket: ticket})
   }
 }
 
@@ -42,6 +45,10 @@ class OpenTicket extends Component {
         result: "WON"
       })
     })
+    .then(res => res.json())
+    .then(ticket => {
+      this.props.closeTicket(this.props.tickets.findIndex(ticket => ticket.id === ticketId), ticket)
+    })
     this.props.adjustBalance(this.props.payout)
     fetch(`http://localhost:3000/api/v1/users/${this.props.currentUserId}`, {
       method: 'PATCH',
@@ -66,6 +73,10 @@ class OpenTicket extends Component {
         closed: true,
         result: "LOST"
       })
+    })
+    .then(res => res.json())
+    .then(ticket => {
+      this.props.closeTicket(this.props.tickets.findIndex(ticket => ticket.id === ticketId), ticket)
     })
   }
 

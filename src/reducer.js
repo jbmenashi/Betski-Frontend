@@ -20,7 +20,8 @@ const initialState = {
   activeBets: [],
   activeMultiplier: 1,
   betForPost: [],
-  tickets: []
+  tickets: [],
+  closedTickets: []
 }
 
 function reducer(state = initialState, action) {
@@ -67,6 +68,8 @@ function reducer(state = initialState, action) {
       return {...state, isActiveTicket: false, currentTicketId: undefined}
     case 'ADJUST_BALANCE':
       return {...state, currentUserBalance: state.currentUserBalance + action.payload, activeBets: [], activeMultiplier: 1, betForPost: [], isBetSelected: false, wagerInput: 0}
+    case 'CLOSE_TICKET':
+      return {...state, tickets: [...state.tickets.slice(0, action.index), ...state.tickets.slice(action.index + 1, state.tickets.length)], closedTickets: [...state.closedTickets, action.ticket]}
     default:
       return state
   }
