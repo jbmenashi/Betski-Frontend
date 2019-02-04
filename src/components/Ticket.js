@@ -15,7 +15,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     inputWager: (event) => dispatch({type: "INPUT_WAGER", payload: event.target.value}),
-    removeBetFromActive: (index, divide) => dispatch({type: "REMOVE_BET_FROM_ACTIVE", payload: index, divide: divide})
+    removeBetFromActive: (index, divide) => dispatch({type: "REMOVE_BET_FROM_ACTIVE", payload: index, divide: divide}),
+    removeTicketFromActive: () => dispatch({type: "REMOVE_TICKET_FROM_ACTIVE", payload: "test"})
   }
 }
 
@@ -35,6 +36,7 @@ class Ticket extends Component {
 
   removeTicket = (ticketId) => {
     this.props.activeBets.forEach(bet => this.removeBet(bet.id))
+    this.props.removeTicketFromActive()
     fetch(`http://localhost:3000/api/v1/tickets/${ticketId}`, {
       method: 'DELETE'
     })
