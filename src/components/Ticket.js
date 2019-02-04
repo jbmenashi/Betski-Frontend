@@ -8,6 +8,7 @@ const mapStateToProps = state => {
     activeBets: state.activeBets,
     activeMultiplier: state.activeMultiplier,
     currentTicketId: state.currentTicketId,
+    currentUserId: state.currentUserId,
     isActiveTicket: state.isActiveTicket
   }
 }
@@ -37,6 +38,16 @@ class Ticket extends Component {
 
   submitTicket = (ticketId) => {
     this.props.adjustBalance(-this.props.wagerInput)
+    fetch(`http://localhost:3000/api/v1/users/${this.props.currentUserId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify({
+        balance: this.props.currentUserBalance - this.props.wagerInput
+      })
+    })
     fetch(`http://localhost:3000/api/v1/tickets/${ticketId}`, {
       method: 'PATCH',
       headers: {

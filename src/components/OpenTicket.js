@@ -55,6 +55,21 @@ class OpenTicket extends Component {
     })
   }
 
+  closeAndWin = ticketId => {
+    fetch(`http://localhost:3000/api/v1/tickets/${ticketId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify({
+        closed: true,
+        result: "LOST"
+      })
+    })
+  }
+
+
   render() {
     return (
       <div>
