@@ -7,6 +7,7 @@ import AccountContainer from './containers/AccountContainer'
 import NewTicketContainer from './containers/NewTicketContainer'
 import OpenTicketsContainer from './containers/OpenTicketsContainer'
 import ClosedTicketsContainer from './containers/ClosedTicketsContainer'
+import Logout from './components/Logout'
 
 const mapStateToProps = (state) => {
   return {
@@ -25,12 +26,14 @@ class App extends Component {
             <Link to="/new-ticket">New Ticket</Link>
             <Link to="/open-tickets">Open Tickets</Link>
             <Link to="/closed-tickets">Closed Tickets</Link>
+            <Link to="/logout">Log Out</Link>
             </nav>
             <Route exact path="/" render={() => (this.props.currentUserId !== undefined ? (<Redirect to="/account"/>) : (<Landing/>))}/>
             <Route path="/account" component={AccountContainer}/>
             <Route path="/new-ticket" component={NewTicketContainer}/>
             <Route path="/open-tickets" component={OpenTicketsContainer}/>
             <Route path='/closed-tickets' component={ClosedTicketsContainer}/>
+            <Route path='/logout' render={() => (this.props.currentUserId !== undefined ? (<Logout/>) : (<Redirect to="/"/>))}/>
           </>
         </Router>
       </div>
