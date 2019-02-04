@@ -79,7 +79,6 @@ class Ticket extends Component {
       <div className="ticketInfo">
       <h2>Ticket</h2>
       <BetList/>
-      <strong>Wager Calculator:</strong>
       Wager:<input type="number" onChange={this.props.inputWager} value={this.props.wagerInput}/>
       Payout (Wager + Winnings):{this.calculatePayout(this.props.wagerInput, this.props.activeMultiplier)}
       <button onClick={() => this.submitTicket(this.props.currentTicketId)}>Submit Ticket</button>
