@@ -73,7 +73,9 @@ class BetInfo extends Component {
           team: this.props.betForPost[0],
           variety: this.props.betForPost[1],
           line: this.props.betForPost[2],
-          odds: this.props.betForPost[3]
+          odds: this.props.betForPost[3],
+          away: this.props.betForPost[4],
+          home: this.props.betForPost[5]
         })
       })
       .then(res => res.json())
@@ -95,7 +97,9 @@ class BetInfo extends Component {
         team: this.props.betForPost[0],
         variety: this.props.betForPost[1],
         line: this.props.betForPost[2],
-        odds: this.props.betForPost[3]
+        odds: this.props.betForPost[3],
+        away: this.props.betForPost[4],
+        home: this.props.betForPost[5]
       })
     })
     .then(res => res.json())

@@ -24,8 +24,11 @@ class Bet extends Component {
 
   render() {
     let info;
-    if (this.props.variety === "spread" || this.props.variety === "over_under") {
+    if (this.props.variety === "spread") {
       info = `${this.props.variety.toUpperCase()} bet on ${this.props.team} at ${this.props.line} for ${this.props.odds} odds`
+    }
+    else if (this.props.variety === "over_under") {
+      info = `${this.props.variety.toUpperCase()} bet on ${this.props.team} between the ${this.props.game.away_team} and the ${this.props.game.home_team} at ${this.props.line} for ${this.props.odds} odds`
     }
     else if (this.props.variety === "moneyline") {
       info = `${this.props.variety.toUpperCase()} bet on ${this.props.team} to win for ${this.props.odds} odds`

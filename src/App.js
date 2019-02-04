@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import Landing from './containers/Landing';
 import AccountContainer from './containers/AccountContainer'
 import NewTicketContainer from './containers/NewTicketContainer'
+import OpenTicketsContainer from './containers/OpenTicketsContainer'
 
 const mapStateToProps = (state) => {
   return {
@@ -21,10 +22,12 @@ class App extends Component {
             <nav>
             <Link to="/account">Account</Link>
             <Link to="/new-ticket">New Ticket</Link>
+            <Link to="/open-tickets">Open Tickets</Link>
             </nav>
             <Route exact path="/" render={() => (this.props.currentUserId !== undefined ? (<Redirect to="/account"/>) : (<Landing/>))}/>
             <Route path="/account" component={AccountContainer}/>
             <Route path="/new-ticket" component={NewTicketContainer}/>
+            <Route path="/open-tickets" component={OpenTicketsContainer}/>
           </>
         </Router>
       </div>

@@ -35,6 +35,7 @@ class Ticket extends Component {
   }
 
   submitTicket = (ticketId) => {
+    //change user balance!!!!
     fetch(`http://localhost:3000/api/v1/tickets/${ticketId}`, {
       method: 'PATCH',
       headers: {
