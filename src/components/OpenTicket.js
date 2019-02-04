@@ -55,7 +55,7 @@ class OpenTicket extends Component {
     })
   }
 
-  closeAndWin = ticketId => {
+  closeAndLose = ticketId => {
     fetch(`http://localhost:3000/api/v1/tickets/${ticketId}`, {
       method: 'PATCH',
       headers: {

@@ -66,7 +66,7 @@ function reducer(state = initialState, action) {
     case "REMOVE_TICKET_FROM_ACTIVE":
       return {...state, isActiveTicket: false, currentTicketId: undefined}
     case 'ADJUST_BALANCE':
-      return {...state, currentUserBalance: state.currentUserBalance + action.payload, activeBets: [], activeMultiplier: 0, betForPost: [], isBetSelected: false}
+      return {...state, currentUserBalance: state.currentUserBalance + action.payload, activeBets: [], activeMultiplier: 1, betForPost: [], isBetSelected: false, wagerInput: 0}
     default:
       return state
   }
