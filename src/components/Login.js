@@ -20,31 +20,36 @@ const mapDispatchToProps = (dispatch) => {
 class Login extends Component {
 
   setCurrentUser = (input) => {
-    fetch('http://localhost:3000/api/v1/users')
-    .then(res => res.json())
-    .then(data => {
-      let foundUser = data.find(user => user.username === input)
-      if (foundUser !== undefined) {
-        this.props.submitLogin(foundUser.id, foundUser.username, foundUser.balance)
-      }
-      else {
-        fetch('http://localhost:3000/api/v1/users', {
-          method: 'POST',
-          headers: {
-            'Content-Type':'application/json',
-            'Accept':'application/json'
-          },
-          body: JSON.stringify({
-            username: input,
-            balance: 1000
+    if (input.length === 0) {
+      window.alert("Must Enter a Username")
+    }
+    else {
+      fetch('http://localhost:3000/api/v1/users')
+      .then(res => res.json())
+      .then(data => {
+        let foundUser = data.find(user => user.username === input)
+        if (foundUser !== undefined) {
+          this.props.submitLogin(foundUser.id, foundUser.username, foundUser.balance)
+        }
+        else {
+          fetch('http://localhost:3000/api/v1/users', {
+            method: 'POST',
+            headers: {
+              'Content-Type':'application/json',
+              'Accept':'application/json'
+            },
+            body: JSON.stringify({
+              username: input,
+              balance: 1000
+            })
           })
-        })
-        .then(res => res.json())
-        .then(newUser => {
-          this.props.submitLogin(newUser.id, newUser.username, newUser.balance)
-        })
-      }
-    })
+          .then(res => res.json())
+          .then(newUser => {
+            this.props.submitLogin(newUser.id, newUser.username, newUser.balance)
+          })
+        }
+      })
+    }
   }
 
   render() {

@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
 class OpenTicket extends Component {
 
   showBets = (bets) => {
-    let mappedBets = bets.map(bet => {
+    bets.map(bet => {
       if (bet.variety === "spread") {
         return `${bet.variety.toUpperCase()} bet on ${bet.team} at ${bet.line} for ${bet.odds} odds`
       }
@@ -30,7 +30,6 @@ class OpenTicket extends Component {
         return `${bet.variety.toUpperCase()} bet on ${bet.team} to win for ${bet.odds} odds`
       }
     })
-    return mappedBets
   }
 
   closeAndWin = ticketId => {
