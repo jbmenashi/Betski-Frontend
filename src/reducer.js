@@ -61,7 +61,7 @@ function reducer(state = initialState, action) {
     case "REMOVE_BET_FROM_ACTIVE":
       return {...state, activeMultiplier: state.activeMultiplier / action.divide, activeBets: [...state.activeBets.slice(0, action.payload), ...state.activeBets.slice(action.payload + 1, state.activeBets.length)]}
     case "REMOVE_TICKET_FROM_ACTIVE":
-      return {...state, isActiveTicket: false}
+      return {...state, isActiveTicket: false, currentTicketId: undefined}
     default:
       return state
   }
