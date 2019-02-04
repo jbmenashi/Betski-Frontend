@@ -7,6 +7,7 @@ const mapStateToProps = state => {
     wagerInput: state.wagerInput,
     activeBets: state.activeBets,
     activeMultiplier: state.activeMultiplier,
+    currentUserBalance: state.currentUserBalance,
     currentTicketId: state.currentTicketId,
     currentUserId: state.currentUserId,
     isActiveTicket: state.isActiveTicket
@@ -45,7 +46,7 @@ class Ticket extends Component {
         'Accept':'application/json'
       },
       body: JSON.stringify({
-        balance: this.props.currentUserBalance - this.props.wagerInput
+        balance: parseInt(this.props.currentUserBalance - this.props.wagerInput)
       })
     })
     fetch(`http://localhost:3000/api/v1/tickets/${ticketId}`, {
