@@ -34,6 +34,26 @@ class Ticket extends Component {
     return (wager * multiplier).toFixed(0)
   }
 
+  submitTicket = (ticketId) => {
+    fetch(`http://localhost:3000/api/v1/tickets/${ticketId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify({
+        wager: this.props.wagerInput,
+        payout: this.calculatePayout(this.props.wagerInput, this.props.activeMultiplier),
+        submitted: true
+      })
+    })
+    .then(res => res.json())
+    .then(subTicket => {
+      //push to the sub ticket array
+      this.props.removeTicketFromActive()
+    })
+  }
+
   removeTicket = (ticketId) => {
     this.props.activeBets.forEach(bet => this.removeBet(bet.id))
     this.props.removeTicketFromActive()
@@ -50,7 +70,7 @@ class Ticket extends Component {
       <strong>Wager Calculator:</strong>
       Wager:<input type="number" onChange={this.props.inputWager} value={this.props.wagerInput}/>
       Payout (Wager + Winnings):{this.calculatePayout(this.props.wagerInput, this.props.activeMultiplier)}
-      <button>Submit Ticket</button>
+      <button onClick={() => this.submitTicket(this.props.currentTicketId)}>Submit Ticket</button>
       <button onClick={() => this.removeTicket(this.props.currentTicketId)}>Cancel Ticket</button>
       </div>
     );
