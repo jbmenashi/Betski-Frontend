@@ -71,7 +71,7 @@ function reducer(state = initialState, action) {
     case 'CLOSE_TICKET':
       return {...state, tickets: [...state.tickets.slice(0, action.index), ...state.tickets.slice(action.index + 1, state.tickets.length)], closedTickets: [...state.closedTickets, action.ticket]}
     case 'LOGOUT':
-      return {...state, currentUserId: undefined, currentUserName: undefined, currentUserBalance: undefined, loginInput: ''}
+      return {...state, currentUserId: undefined, currentUserName: undefined, currentUserBalance: undefined, loginInput: '', activeBets: [], activeMultiplier: 1, betForPost: [], currentGameId: undefined, currentTicketId: undefined, filteredGames: [], games: [], isActiveTicket: false, isBetSelected: false}
     default:
       return state
   }
