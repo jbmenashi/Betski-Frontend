@@ -3,9 +3,6 @@ import {connect} from 'react-redux'
 
 const mapStateToProps = state => {
   return {
-    currentUserId: state.currentUserId,
-    currentGameId: state.currentGameId,
-    currentTicketId: state.currentTicketId,
     selectedOdds: state.selectedOdds,
     selectedAwayTeam: state.selectedAwayTeam,
     selectedHomeTeam: state.selectedHomeTeam,
@@ -13,20 +10,12 @@ const mapStateToProps = state => {
     selectedTotal: state.selectedTotal,
     selectedBetType: state.selectedBetType,
     practiceWagerInput: state.practiceWagerInput,
-    isActiveTicket: state.isActiveTicket,
-    activeBets: state.activeBets,
-    activeMultiplier: state.activeMultiplier,
-    betForPost: state.betForPost
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     inputPracticeWager: (event) => dispatch({type: "INPUT_PRACTICE_WAGER", payload: event.target.value}),
-    setCurrentTicket: (ticketId) => dispatch({type: "SET_CURRENT_TICKET", payload: ticketId}),
-    pushActiveBet: (bet) => dispatch({type: "PUSH_BET_TO_ACTIVE_BETS", payload: bet}),
-    initActiveMultiplier: (multiplier) => dispatch({type: "INIT_ACTIVE_MULTIPLIER", payload: multiplier}),
-    calcActiveMulitplier: (multiplier) => dispatch({type: "CALC_ACTIVE_MULTIPLIER", payload: multiplier})
   }
 }
 
@@ -39,75 +28,6 @@ class BetInfo extends Component {
     else {
       return (wager * ((Math.abs(odds) + 100) / Math.abs(odds))).toFixed(0)
     }
-  }
-
-  addBetToTicket = () => {
-    !this.props.isActiveTicket ?
-    fetch('http://localhost:3000/api/v1/tickets', {
-      method: 'POST',
-      headers: {
-        'Content-Type':'application/json',
-        'Accept':'application/json'
-      },
-      body: JSON.stringify({
-        user_id: this.props.currentUserId,
-        wager: 0,
-        payout: 0,
-        submitted: false,
-        closed: false,
-        result: 'OPEN'
-      })
-    })
-    .then(res => res.json())
-    .then(newTicket => {
-      this.props.setCurrentTicket(newTicket.id)
-      fetch('http://localhost:3000/api/v1/bets', {
-        method: 'POST',
-        headers: {
-          'Content-Type':'application/json',
-          'Accept':'application/json'
-        },
-        body: JSON.stringify({
-          game_id: this.props.currentGameId,
-          ticket_id: this.props.currentTicketId,
-          multiplier: this.props.selectedOdds > 0 ? ((Math.abs(this.props.selectedOdds) + 100) / 100) : ((Math.abs(this.props.selectedOdds) + 100) / Math.abs(this.props.selectedOdds)),
-          team: this.props.betForPost[0],
-          variety: this.props.betForPost[1],
-          line: this.props.betForPost[2],
-          odds: this.props.betForPost[3],
-          away: this.props.betForPost[4],
-          home: this.props.betForPost[5]
-        })
-      })
-      .then(res => res.json())
-      .then(bet => {
-        this.props.pushActiveBet(bet)
-        this.props.initActiveMultiplier(bet.multiplier)
-      })
-    }) :
-    fetch('http://localhost:3000/api/v1/bets', {
-      method: 'POST',
-      headers: {
-        'Content-Type':'application/json',
-        'Accept':'application/json'
-      },
-      body: JSON.stringify({
-        game_id: this.props.currentGameId,
-        ticket_id: this.props.currentTicketId,
-        multiplier: this.props.selectedOdds > 0 ? ((Math.abs(this.props.selectedOdds) + 100) / 100) : ((Math.abs(this.props.selectedOdds) + 100) / Math.abs(this.props.selectedOdds)),
-        team: this.props.betForPost[0],
-        variety: this.props.betForPost[1],
-        line: this.props.betForPost[2],
-        odds: this.props.betForPost[3],
-        away: this.props.betForPost[4],
-        home: this.props.betForPost[5]
-      })
-    })
-    .then(res => res.json())
-    .then(bet => {
-      this.props.pushActiveBet(bet)
-      this.props.calcActiveMulitplier(bet.multiplier)
-    })
   }
 
   render() {

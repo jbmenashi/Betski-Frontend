@@ -76,6 +76,7 @@ body {
 .pickSport {
   text-align: center;
   padding-top: 10px;
+  padding-bottom: 15px;
 }
 
 .btn {
@@ -91,4 +92,14 @@ body {
 #NBAButton {
   background-color: #cc7134;
   color: white;
+}
+
+/******* GAMELIST *******/
+
+.table {
+  text-align: center;
+}
+
+td {
+  text-align: center
 }

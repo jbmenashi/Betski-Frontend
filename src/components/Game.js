@@ -26,7 +26,7 @@ class Game extends Component {
 
   awaySpread = (spread) => {
     if (spread < 0) {
-      return Math.abs(spread)
+      return `+${Math.abs(spread)}`
     } else {
       return -Math.abs(spread)
     }
@@ -36,23 +36,25 @@ class Game extends Component {
     if (spread < 0) {
       return spread
     } else {
-      return Math.abs(spread)
+      return `+${Math.abs(spread)}`
     }
   }
 
   render() {
     return (
       <div>
-        <table>
-        <caption>{moment(this.props.date).format('llll')}, spread: {this.props.spread}, total: {this.props.over_under}</caption>
-          <tbody>
+        <table className="table">
+        <caption>{moment(this.props.date).format('llll')}, spread: {this.homeSpread(this.props.spread)}, total: {this.props.over_under}</caption>
+        <thead className="thead-dark">
             <tr>
-              <th></th>
-              <th>Matchup</th>
-              <th>Spread</th>
-              <th>Over/Under</th>
-              <th>Moneyline</th>
+              <th scope="col">{this.props.sport}</th>
+              <th scope="col">Matchup</th>
+              <th scope="col">Spread</th>
+              <th scope="col">Over/Under</th>
+              <th scope="col">Moneyline</th>
             </tr>
+          </thead>
+          <tbody>
             <tr>
               <td><img src={this.props.away_logo} alt={this.props.away_team} width="60" height="60"/></td>
               <td>{this.props.away_team}</td>

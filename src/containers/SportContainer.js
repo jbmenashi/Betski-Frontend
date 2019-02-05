@@ -139,10 +139,6 @@ class SportContainer extends Component {
             </div>
           </div>
         </div>
-
-
-
-
       </div>
     );
   }

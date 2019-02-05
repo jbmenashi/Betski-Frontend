@@ -12,8 +12,12 @@ class GameList extends Component {
 
   render() {
     return (
-      <div className="gameList">
-        {this.props.filteredGames.map(game => <Game {...game} key={game.id}/>)}
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            {this.props.filteredGames.map(game => <Game {...game} key={game.id}/>)}
+          </div>
+        </div>
       </div>
     );
   }
