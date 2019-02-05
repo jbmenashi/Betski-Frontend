@@ -134,3 +134,21 @@ body {
 span {
   text-decoration: underline;
 }
+
+/******** OPEN TICKETS ********/
+
+#OpenTicketsContainer h2 {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#OpenTicketsContainer .col-4 {
+  text-align: center;
+  border: 1px solid #7ba650;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+
+/******** CLOSED TICKETS ********/

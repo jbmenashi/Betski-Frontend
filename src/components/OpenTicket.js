@@ -21,13 +21,13 @@ class OpenTicket extends Component {
   showBets = (bets) => {
     let mappedBets = bets.map(bet => {
       if (bet.variety === "spread") {
-        return `${bet.variety.toUpperCase()} bet on ${bet.team} at ${bet.line} for ${bet.odds} odds`
+        return `${bet.variety.toUpperCase()} bet on the ${bet.team} at ${bet.line} for ${bet.odds} odds`
       }
       else if (bet.variety === "over_under") {
         return `${bet.variety.toUpperCase()} bet on ${bet.team} between the ${bet.away} and the ${bet.home} at ${bet.line} for ${bet.odds} odds`
       }
       else if (bet.variety === "moneyline") {
-        return `${bet.variety.toUpperCase()} bet on ${bet.team} to win for ${bet.odds} odds`
+        return `${bet.variety.toUpperCase()} bet on the ${bet.team} to win for ${bet.odds} odds`
       }
     })
     return mappedBets
@@ -80,15 +80,15 @@ class OpenTicket extends Component {
     })
   }
 
-
   render() {
+
     return (
-      <div>
-        Bets: {this.showBets(this.props.bets)}<br/>
-        Wager: {this.props.wager}<br/>
-        Payout: {this.props.payout}<br/>
-        <button onClick={() => this.closeAndWin(this.props.id)}>Win</button>
-        <button onClick={() => this.closeAndLose(this.props.id)}>Lose</button>
+      <div className="col-4">
+        {this.showBets(this.props.bets)}<br/>
+        Wager: {this.props.wager} Units<br/>
+        Payout: {this.props.payout} Units <br/>
+        <button className="btn btn-success btn-sm" onClick={() => this.closeAndWin(this.props.id)}>Win</button>
+        <button className="btn btn-danger btn-sm" onClick={() => this.closeAndLose(this.props.id)}>Lose</button>
       </div>
     );
   }
