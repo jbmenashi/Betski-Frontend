@@ -1,5 +1,6 @@
 body {
   font-family: 'Righteous', cursive;
+  background-color: #f7eacd;
 }
 
 /************* NAVBAR *************/
@@ -70,16 +71,24 @@ body {
   color: #7ba650;
 }
 
+/********** NEW TICKET ***********/
 
-.gameList {
-  float: left;
+.pickSport {
+  text-align: center;
+  padding-top: 10px;
 }
 
-.betInfo {
-  float: right;
+.btn {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-.ticketInfo {
-  clear: right;
-  float: right;
+#gamesListColumn {
+  height: 500px;
+  overflow-y: scroll;
+}
+
+#NBAButton {
+  background-color: #cc7134;
+  color: white;
 }

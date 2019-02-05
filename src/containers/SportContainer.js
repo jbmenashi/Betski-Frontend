@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import GameList from '../components/GameList';
 import BetInfo from '../components/BetInfo';
-import Ticket from '../components/Ticket'
+import Ticket from '../components/Ticket';
+import PickSport from '../components/PickSport'
 
 const mapStateToProps = (state) => {
   return {
@@ -13,24 +14,46 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    selectSport: (sport) => dispatch({type: "SELECT_SPORT", payload: sport})
-  }
-}
-
 class SportContainer extends Component {
   render() {
     return (
-      <div>
-        <img src="https://s3.us-east-2.amazonaws.com/betski-images/basketball.png" alt="NBA" width="150" height="150" onClick={() => this.props.selectSport("NBA")}/>
-        <img src="https://s3.us-east-2.amazonaws.com/betski-images/hockey.jpg" alt="NHL" width="150" height="150" onClick={() => this.props.selectSport("NHL")}/>
-        {this.props.filteredGames.length > 0 ? <GameList/> : <></>}
-        {this.props.isBetSelected ? <BetInfo/> : <></>}
-        {this.props.isActiveTicket ? <Ticket/> : <></>}
+
+      <div className="container">
+        <PickSport/>
+        <div className="row">
+          <div className="col" id="gamesListColumn">
+            {this.props.filteredGames.length > 0 ? <GameList/> : <></>}
+          </div>
+          <div className="col">
+            {this.props.isActiveTicket ? <Ticket/> : <></>}
+          </div>
+        </div>
+        <div class="modal fade" id="betInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Bet Info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {this.props.isBetSelected ? <BetInfo/> : <></>}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SportContainer);
+export default connect(mapStateToProps)(SportContainer);
