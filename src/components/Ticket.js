@@ -94,7 +94,7 @@ class Ticket extends Component {
         <h5>Wager:</h5>
         <input width="20" type="number" onChange={this.props.inputWager} value={this.props.wagerInput}/><br/><br/>
         <h5>Payout (Wager + Winnings):</h5><br/>
-        <h3>{this.calculatePayout(this.props.wagerInput, this.props.activeMultiplier)} Units</h3><br/>
+        <h3><em id="units">{this.calculatePayout(this.props.wagerInput, this.props.activeMultiplier)}</em> Units</h3><br/>
         <button className="btn btn-success btn-med" onClick={() => this.submitTicket(this.props.currentTicketId)}>Submit Ticket</button>
         <button className="btn btn-danger btn-med" onClick={() => this.removeTicket(this.props.currentTicketId)}>Cancel Ticket</button>
       </div>

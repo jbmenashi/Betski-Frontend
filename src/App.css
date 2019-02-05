@@ -114,10 +114,6 @@ body {
   text-decoration: underline;
 }
 
-.ticketInfo h3 {
-  color: #7ba650;
-}
-
 .betList {
   padding: 10px
 }
@@ -127,4 +123,14 @@ body {
   color: gray;
   border: 1px solid gray;
   margin-bottom: 5px
+}
+
+/********** BET INFO *********/
+
+.betInfo {
+  text-align: center
+}
+
+span {
+  text-decoration: underline;
 }

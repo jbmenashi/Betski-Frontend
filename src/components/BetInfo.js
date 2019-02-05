@@ -34,27 +34,26 @@ class BetInfo extends Component {
     let info;
     if (this.props.selectedBetType[0] === "spread") {
       this.props.selectedBetType[1] === "A" ?
-      info = <p>This is a Spread bet. You bet that the {this.props.selectedAwayTeam} will <strong>{this.props.selectedSpread < 0 ? "win the game *or* lose than less by" : "win the game by at least"}</strong> {Math.abs(this.props.selectedSpread)} points</p> :
-      info = <p>This is a Spread bet. You bet that the {this.props.selectedHomeTeam} will <strong>{this.props.selectedSpread > 0 ? "win the game *or* lose than less by" : "win the game by at least"}</strong> {Math.abs(this.props.selectedSpread)} points</p>
+      info = <p>This is a Spread bet. You bet that the {this.props.selectedAwayTeam} will <span>{this.props.selectedSpread < 0 ? "win the game *or* lose than less by" : "win the game by at least"}</span> {Math.abs(this.props.selectedSpread)} points</p> :
+      info = <p>This is a Spread bet. You bet that the {this.props.selectedHomeTeam} will <span>{this.props.selectedSpread > 0 ? "win the game *or* lose than less by" : "win the game by at least"}</span> {Math.abs(this.props.selectedSpread)} points</p>
     }
     else if (this.props.selectedBetType[0] === "over_under") {
       this.props.selectedBetType[1] === "A" ?
-      info = <p>This is an Over/Under bet. You bet that the total points scored by both teams will be <strong>at least</strong> {this.props.selectedTotal}</p> :
-      info = <p>This is an Over/Under bet. You bet that the total points scored by both teams will be <strong>less than</strong> {this.props.selectedTotal}</p>
+      info = <p>This is an Over/Under bet. You bet that the total points scored by both teams will be <span>at least</span> {this.props.selectedTotal}</p> :
+      info = <p>This is an Over/Under bet. You bet that the total points scored by both teams will be <span>less than</span> {this.props.selectedTotal}</p>
     }
     else if (this.props.selectedBetType[0] === "moneyline") {
       this.props.selectedBetType[1] === "A" ?
-      info = <p>This is a Moneyline bet. You bet that the {this.props.selectedAwayTeam} will <strong>win the game</strong></p> :
-      info = <p>This is a Moneyline bet. You bet that the {this.props.selectedHomeTeam} will <strong>win the game</strong></p>
+      info = <p>This is a Moneyline bet. You bet that the {this.props.selectedAwayTeam} will <span>win the game</span></p> :
+      info = <p>This is a Moneyline bet. You bet that the {this.props.selectedHomeTeam} will <span>win the game</span></p>
     }
 
 
     return (
       <div className="betInfo">
       {info}
-      <strong>Wager Calculator:</strong>
-      If you bet this much:<input type="number" onChange={this.props.inputPracticeWager} value={this.props.practiceWagerInput}/>
-      You would receive: {this.calculatePayout(this.props.practiceWagerInput, this.props.selectedOdds)}
+      If you bet this much:<input type="number" onChange={this.props.inputPracticeWager} value={this.props.practiceWagerInput}/><br/>
+      You would receive: <em id="units">{this.calculatePayout(this.props.practiceWagerInput, this.props.selectedOdds)}</em> Units
       </div>
     );
   }
