@@ -44,7 +44,7 @@ class Game extends Component {
     return (
       <div>
         <table className="table">
-        <caption>{moment(this.props.date).format('llll')}, spread: {this.homeSpread(this.props.spread)}, total: {this.props.over_under}</caption>
+        <caption>{moment(this.props.date).format('llll')} || Spread: {this.homeSpread(this.props.spread)} || Total: {this.props.over_under}</caption>
         <thead className="thead-dark">
             <tr>
               <th scope="col">{this.props.sport}</th>
