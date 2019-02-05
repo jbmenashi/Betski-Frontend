@@ -5,7 +5,7 @@ class AccountContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="AccountContainer">
       <AccountDetails/>
       </div>
     );

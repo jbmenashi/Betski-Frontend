@@ -1,3 +1,7 @@
+body {
+  font-family: 'Righteous', cursive;
+}
+
 /************* NAVBAR *************/
 
 .navbar {
@@ -7,13 +11,11 @@
 
 .navbar .navbar-brand {
   color: white;
-  font-family: 'Righteous', cursive;
   font-size: 60px;
   margin-left: 20px;
 }
 
 .navbar .nav-link {
-  font-family: 'Righteous', cursive;
   color: white;
 }
 
@@ -36,7 +38,6 @@
 #loginContainer {
   text-align: center;
   background-image: url('./images/sportsbook.png');
-  font-family: 'Righteous', cursive;
   background-size: cover;
   height: 600px;
 }
@@ -56,8 +57,18 @@
   margin-top: 200px
 }
 
+/********** ACCOUNT DETAILS **********/
 
+.AccountContainer {
+  background-color: #f7eacd;
+  height: 600px;
+  text-align: center;
+  padding-top: 50px
+}
 
+#units {
+  color: #7ba650;
+}
 
 
 .gameList {
