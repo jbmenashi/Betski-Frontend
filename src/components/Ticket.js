@@ -75,6 +75,7 @@ class Ticket extends Component {
       .then(subTicket => {
         this.props.removeTicketFromActive()
       })
+      .then(window.alert("Ticket Submitted!"))
     }
   }
 
