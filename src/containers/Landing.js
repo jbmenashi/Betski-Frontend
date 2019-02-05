@@ -5,7 +5,7 @@ class Landing extends Component {
 
   render() {
     return (
-      <div>
+      <div id="loginContainer">
         <Login />
       </div>
     );

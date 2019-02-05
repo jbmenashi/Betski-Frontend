@@ -31,8 +31,6 @@ class App extends Component {
                   <li className="nav-item"><Link className="nav-link" to="/closed-tickets">Closed Tickets</Link></li>
                   <li className="nav-item"><Link className="nav-link" to="/logout">Log Out</Link></li>
                 </ul>
-
-
               </div>
             </nav>
             <Route exact path="/" render={() => (this.props.currentUserId !== undefined ? (<Redirect to="/account"/>) : (<Landing/>))}/>

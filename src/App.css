@@ -1,3 +1,5 @@
+/************* NAVBAR *************/
+
 .navbar {
   height: 90px;
   background-color: #7ba650;
@@ -28,6 +30,33 @@
 #navbarSupportedContent a:hover {
   text-decoration: underline;
 }
+
+/*********** LOGIN/LOGOUT ***********/
+
+#loginContainer {
+  text-align: center;
+  background-image: url('./images/sportsbook.png');
+  font-family: 'Righteous', cursive;
+  background-size: cover;
+  height: 600px;
+}
+
+#loginInput {
+  color: white;
+  padding: 10%;
+}
+
+#submitLogin {
+  margin-top: 15px
+}
+
+#submitLogout {
+  margin-top: 200px
+}
+
+
+
+
 
 .gameList {
   float: left;

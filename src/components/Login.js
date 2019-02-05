@@ -54,10 +54,10 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <p>Login</p>
-        <input type="text" onChange={this.props.inputLogin} value={this.props.loginInput}/>
-        <button type="submit" className="btn btn-warning btn-sm" onClick={() => this.setCurrentUser(this.props.loginInput)}>Submit</button>
+      <div id="loginInput">
+        <h1>Log In</h1>
+        <input type="text" onChange={this.props.inputLogin} value={this.props.loginInput}/><br/>
+        <button type="submit" className="btn btn-success btn-med" id="submitLogin" onClick={() => this.setCurrentUser(this.props.loginInput)}>Let's Go!</button>
       </div>
     );
   }
