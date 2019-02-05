@@ -25,10 +25,10 @@ class App extends Component {
               <h2 className="navbar-brand">Betski</h2>
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav">
-                  <li className="nav-item"><Link className="nav-link" to="/account">My Account</Link></li>
-                  <li className="nav-item"><Link className="nav-link" to="/new-ticket">New Ticket</Link></li>
-                  <li className="nav-item"><Link className="nav-link" to="/open-tickets">Open Tickets</Link></li>
-                  <li className="nav-item"><Link className="nav-link" to="/closed-tickets">Closed Tickets</Link></li>
+                  {this.props.currentUserId !== undefined ? <li className="nav-item"><Link className="nav-link" to="/account">My Account</Link></li> : <li className="nav-item"><Link className="nav-link" to="/">My Account</Link></li>}
+                  {this.props.currentUserId !== undefined ? <li className="nav-item"><Link className="nav-link" to="/new-ticket">New Ticket</Link></li> : <li className="nav-item"><Link className="nav-link" to="/">New Ticket</Link></li>}
+                  {this.props.currentUserId !== undefined ? <li className="nav-item"><Link className="nav-link" to="/open-tickets">Open Tickets</Link></li> : <li className="nav-item"><Link className="nav-link" to="/">Open Tickets</Link></li>}
+                  {this.props.currentUserId !== undefined ? <li className="nav-item"><Link className="nav-link" to="/closed-tickets">Closed Tickets</Link></li> : <li className="nav-item"><Link className="nav-link" to="/">Closed Tickets</Link></li>}
                   <li className="nav-item"><Link className="nav-link" to="/logout">Log Out</Link></li>
                 </ul>
               </div>
