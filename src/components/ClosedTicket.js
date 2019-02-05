@@ -19,11 +19,13 @@ class ClosedTicket extends Component {
 
   render() {
     return (
-      <div>
-        Bets: {this.showBets(this.props.bets)}<br/>
-        Wager: {this.props.wager}<br/>
-        Payout: {this.props.payout}<br/>
+      <div className="col-lg-4">
+        <div className="wrapper">
+        {this.showBets(this.props.bets).map(element => <p>{element}</p>)}
+        Wager: {this.props.wager} Units<br/>
+        Payout: {this.props.payout} Units<br/>
         {this.props.result === "WON" ? <h3>You won!</h3> : <h3>You lost!</h3>}
+        </div>
       </div>
     );
   }
