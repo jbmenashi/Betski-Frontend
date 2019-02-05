@@ -143,11 +143,23 @@ span {
   margin-bottom: 10px;
 }
 
-#OpenTicketsContainer .col-4 {
+.row.no-gutter {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.wrapper {
   text-align: center;
-  border: 1px solid #7ba650;
+  border: 3px solid black;
   border-radius: 20px;
   padding: 10px;
+  padding-bottom: 20px;
+  height: 95%
+}
+
+.winLoseButtons {
+  margin-top: 5px;
+  margin-bottom: 5px
 }
 
 

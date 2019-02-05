@@ -29,7 +29,7 @@ class OpenTicketsContainer extends Component {
     return (
       <div id="OpenTicketsContainer" className="container">
         <h2>Open Tickets</h2>
-        <div className="row">
+        <div className="row no-gutter">
           {this.props.tickets.filter(ticket => ticket.submitted === true && ticket.closed === false).map(ticket => <OpenTicket {...ticket} key={ticket.id}/>)}
         </div>
       </div>
