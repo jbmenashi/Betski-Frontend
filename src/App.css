@@ -47,7 +47,9 @@
 }
 
 #submitLogin {
-  margin-top: 15px
+  margin-top: 15px;
+  background-color: #7ba650;
+  color: white
 }
 
 #submitLogout {

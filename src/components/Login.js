@@ -57,7 +57,7 @@ class Login extends Component {
       <div id="loginInput">
         <h1>Log In</h1>
         <input type="text" onChange={this.props.inputLogin} value={this.props.loginInput}/><br/>
-        <button type="submit" className="btn btn-success btn-med" id="submitLogin" onClick={() => this.setCurrentUser(this.props.loginInput)}>Let's Go!</button>
+        <button type="submit" className="btn btn-med" id="submitLogin" onClick={() => this.setCurrentUser(this.props.loginInput)}>Let's Go!</button>
       </div>
     );
   }
