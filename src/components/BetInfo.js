@@ -135,7 +135,6 @@ class BetInfo extends Component {
       <strong>Wager Calculator:</strong>
       If you bet this much:<input type="number" onChange={this.props.inputPracticeWager} value={this.props.practiceWagerInput}/>
       You would receive: {this.calculatePayout(this.props.practiceWagerInput, this.props.selectedOdds)}
-      <button onClick={this.addBetToTicket}>Add Bet to Ticket</button>
       </div>
     );
   }

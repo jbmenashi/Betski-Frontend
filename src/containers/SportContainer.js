@@ -10,11 +10,103 @@ const mapStateToProps = (state) => {
     games: state.games,
     filteredGames: state.filteredGames,
     isBetSelected: state.isBetSelected,
-    isActiveTicket: state.isActiveTicket
+    currentUserId: state.currentUserId,
+    currentGameId: state.currentGameId,
+    currentTicketId: state.currentTicketId,
+    selectedOdds: state.selectedOdds,
+    selectedAwayTeam: state.selectedAwayTeam,
+    selectedHomeTeam: state.selectedHomeTeam,
+    selectedSpread: state.selectedSpread,
+    selectedTotal: state.selectedTotal,
+    selectedBetType: state.selectedBetType,
+    practiceWagerInput: state.practiceWagerInput,
+    isActiveTicket: state.isActiveTicket,
+    activeBets: state.activeBets,
+    activeMultiplier: state.activeMultiplier,
+    betForPost: state.betForPost
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentTicket: (ticketId) => dispatch({type: "SET_CURRENT_TICKET", payload: ticketId}),
+    pushActiveBet: (bet) => dispatch({type: "PUSH_BET_TO_ACTIVE_BETS", payload: bet}),
+    initActiveMultiplier: (multiplier) => dispatch({type: "INIT_ACTIVE_MULTIPLIER", payload: multiplier}),
+    calcActiveMulitplier: (multiplier) => dispatch({type: "CALC_ACTIVE_MULTIPLIER", payload: multiplier})
   }
 }
 
 class SportContainer extends Component {
+
+  addBetToTicket = () => {
+    !this.props.isActiveTicket ?
+    fetch('http://localhost:3000/api/v1/tickets', {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify({
+        user_id: this.props.currentUserId,
+        wager: 0,
+        payout: 0,
+        submitted: false,
+        closed: false,
+        result: 'OPEN'
+      })
+    })
+    .then(res => res.json())
+    .then(newTicket => {
+      this.props.setCurrentTicket(newTicket.id)
+      fetch('http://localhost:3000/api/v1/bets', {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json',
+          'Accept':'application/json'
+        },
+        body: JSON.stringify({
+          game_id: this.props.currentGameId,
+          ticket_id: this.props.currentTicketId,
+          multiplier: this.props.selectedOdds > 0 ? ((Math.abs(this.props.selectedOdds) + 100) / 100) : ((Math.abs(this.props.selectedOdds) + 100) / Math.abs(this.props.selectedOdds)),
+          team: this.props.betForPost[0],
+          variety: this.props.betForPost[1],
+          line: this.props.betForPost[2],
+          odds: this.props.betForPost[3],
+          away: this.props.betForPost[4],
+          home: this.props.betForPost[5]
+        })
+      })
+      .then(res => res.json())
+      .then(bet => {
+        this.props.pushActiveBet(bet)
+        this.props.initActiveMultiplier(bet.multiplier)
+      })
+    }) :
+    fetch('http://localhost:3000/api/v1/bets', {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: JSON.stringify({
+        game_id: this.props.currentGameId,
+        ticket_id: this.props.currentTicketId,
+        multiplier: this.props.selectedOdds > 0 ? ((Math.abs(this.props.selectedOdds) + 100) / 100) : ((Math.abs(this.props.selectedOdds) + 100) / Math.abs(this.props.selectedOdds)),
+        team: this.props.betForPost[0],
+        variety: this.props.betForPost[1],
+        line: this.props.betForPost[2],
+        odds: this.props.betForPost[3],
+        away: this.props.betForPost[4],
+        home: this.props.betForPost[5]
+      })
+    })
+    .then(res => res.json())
+    .then(bet => {
+      this.props.pushActiveBet(bet)
+      this.props.calcActiveMulitplier(bet.multiplier)
+    })
+  }
+
   render() {
     return (
 
@@ -28,21 +120,21 @@ class SportContainer extends Component {
             {this.props.isActiveTicket ? <Ticket/> : <></>}
           </div>
         </div>
-        <div class="modal fade" id="betInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Bet Info</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div className="modal fade" id="betInfoModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalCenterTitle">Bet Info</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 {this.props.isBetSelected ? <BetInfo/> : <></>}
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.addBetToTicket}>Add Bet To Ticket</button>
               </div>
             </div>
           </div>
@@ -56,4 +148,4 @@ class SportContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps)(SportContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SportContainer);
