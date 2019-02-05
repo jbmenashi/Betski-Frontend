@@ -1,5 +1,13 @@
-.App {
-  text-align: center;
+.navbar {
+  height: 90px;
+  background-color: #7ba650;
+}
+
+.navbar .navbar-brand {
+  color: white;
+  font-family: 'Righteous', cursive;
+  font-size: 50px;
+  margin-left: 20px;
 }
 
 .gameList {

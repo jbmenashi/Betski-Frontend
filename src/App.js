@@ -21,7 +21,8 @@ class App extends Component {
       <div className="App">
         <Router>
           <>
-            <nav>
+            <nav className="navbar navbar-expand-lg navbar-light">
+              <h2 className="navbar-brand">Betski</h2>
             <Link to="/account">Account</Link>
             <Link to="/new-ticket">New Ticket</Link>
             <Link to="/open-tickets">Open Tickets</Link>
