@@ -25,19 +25,19 @@ class Bet extends Component {
   render() {
     let info;
     if (this.props.variety === "spread") {
-      info = `${this.props.variety.toUpperCase()} bet on ${this.props.team} at ${this.props.line} for ${this.props.odds} odds`
+      info = `${this.props.variety.toUpperCase()} bet on the ${this.props.team} at ${this.props.line} for ${this.props.odds > 0 ? '+' + this.props.odds : this.props.odds} odds`
     }
     else if (this.props.variety === "over_under") {
-      info = `${this.props.variety.toUpperCase()} bet on ${this.props.team} between the ${this.props.game.away_team} and the ${this.props.game.home_team} at ${this.props.line} for ${this.props.odds} odds`
+      info = `${this.props.variety.toUpperCase()} bet on the ${this.props.team} between the ${this.props.game.away_team} and the ${this.props.game.home_team} at ${this.props.line} for ${this.props.odds > 0 ? '+' + this.props.odds : this.props.odds} odds`
     }
     else if (this.props.variety === "moneyline") {
-      info = `${this.props.variety.toUpperCase()} bet on ${this.props.team} to win for ${this.props.odds} odds`
+      info = `${this.props.variety.toUpperCase()} bet on the ${this.props.team} to win for ${this.props.odds > 0 ? '+' + this.props.odds : this.props.odds} odds`
     }
 
     return (
-      <div>
-        {info}
-        <button onClick={() => this.removeBet(this.props.id)}>Remove Bet</button>
+      <div className="bet">
+        <h6>{info}</h6>
+        <button className="btn btn-danger btn-sm" onClick={() => this.removeBet(this.props.id)}>Remove Bet</button>
       </div>
     );
   }

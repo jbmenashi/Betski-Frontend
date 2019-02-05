@@ -101,3 +101,30 @@ body {
 }
 
 /******* ACTIVE TICKET ********/
+
+.ticketInfo {
+  text-align: center;
+  border: 5px solid black;
+  border-radius: 20px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.ticketInfo h2 {
+  text-decoration: underline;
+}
+
+.ticketInfo h3 {
+  color: #7ba650;
+}
+
+.betList {
+  padding: 10px
+}
+
+.betList .bet {
+  padding: 5px;
+  color: gray;
+  border: 1px solid gray;
+  margin-bottom: 5px
+}

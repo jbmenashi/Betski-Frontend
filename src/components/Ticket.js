@@ -89,12 +89,14 @@ class Ticket extends Component {
   render() {
     return (
       <div className="ticketInfo">
-      <h2>Ticket</h2>
-      <BetList/>
-      Wager:<input type="number" onChange={this.props.inputWager} value={this.props.wagerInput}/>
-      Payout (Wager + Winnings):{this.calculatePayout(this.props.wagerInput, this.props.activeMultiplier)}
-      <button onClick={() => this.submitTicket(this.props.currentTicketId)}>Submit Ticket</button>
-      <button onClick={() => this.removeTicket(this.props.currentTicketId)}>Cancel Ticket</button>
+        <h2>Ticket</h2>
+        <BetList/>
+        <h5>Wager:</h5>
+        <input width="20" type="number" onChange={this.props.inputWager} value={this.props.wagerInput}/><br/><br/>
+        <h5>Payout (Wager + Winnings):</h5><br/>
+        <h3>{this.calculatePayout(this.props.wagerInput, this.props.activeMultiplier)} Units</h3><br/>
+        <button className="btn btn-success btn-med" onClick={() => this.submitTicket(this.props.currentTicketId)}>Submit Ticket</button>
+        <button className="btn btn-danger btn-med" onClick={() => this.removeTicket(this.props.currentTicketId)}>Cancel Ticket</button>
       </div>
     );
   }

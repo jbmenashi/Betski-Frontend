@@ -13,7 +13,7 @@ class BetList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="betList">
         {this.props.activeBets.map(bet => <Bet {...bet} key={bet.id}/>)}
       </div>
     );
