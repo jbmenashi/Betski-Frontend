@@ -21,13 +21,19 @@ class App extends Component {
       <div className="App">
         <Router>
           <>
-            <nav className="navbar navbar-expand-lg navbar-light">
+            <nav className="navbar navbar-expand-lg">
               <h2 className="navbar-brand">Betski</h2>
-            <Link to="/account">Account</Link>
-            <Link to="/new-ticket">New Ticket</Link>
-            <Link to="/open-tickets">Open Tickets</Link>
-            <Link to="/closed-tickets">Closed Tickets</Link>
-            <Link to="/logout">Log Out</Link>
+              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav">
+                  <li className="nav-item"><Link className="nav-link" to="/account">My Account</Link></li>
+                  <li className="nav-item"><Link className="nav-link" to="/new-ticket">New Ticket</Link></li>
+                  <li className="nav-item"><Link className="nav-link" to="/open-tickets">Open Tickets</Link></li>
+                  <li className="nav-item"><Link className="nav-link" to="/closed-tickets">Closed Tickets</Link></li>
+                  <li className="nav-item"><Link className="nav-link" to="/logout">Log Out</Link></li>
+                </ul>
+
+
+              </div>
             </nav>
             <Route exact path="/" render={() => (this.props.currentUserId !== undefined ? (<Redirect to="/account"/>) : (<Landing/>))}/>
             <Route path="/account" component={AccountContainer}/>

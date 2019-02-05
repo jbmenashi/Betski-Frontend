@@ -6,8 +6,27 @@
 .navbar .navbar-brand {
   color: white;
   font-family: 'Righteous', cursive;
-  font-size: 50px;
+  font-size: 60px;
   margin-left: 20px;
+}
+
+.navbar .nav-link {
+  font-family: 'Righteous', cursive;
+  color: white;
+}
+
+#navbarSupportedContent ul {
+  margin-left: auto;
+}
+
+#navbarSupportedContent li {
+  margin-left: 15px;
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+#navbarSupportedContent a:hover {
+  text-decoration: underline;
 }
 
 .gameList {
