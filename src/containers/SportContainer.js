@@ -32,11 +32,19 @@ const mapDispatchToProps = (dispatch) => {
     setCurrentTicket: (ticketId) => dispatch({type: "SET_CURRENT_TICKET", payload: ticketId}),
     pushActiveBet: (bet) => dispatch({type: "PUSH_BET_TO_ACTIVE_BETS", payload: bet}),
     initActiveMultiplier: (multiplier) => dispatch({type: "INIT_ACTIVE_MULTIPLIER", payload: multiplier}),
-    calcActiveMulitplier: (multiplier) => dispatch({type: "CALC_ACTIVE_MULTIPLIER", payload: multiplier})
+    calcActiveMulitplier: (multiplier) => dispatch({type: "CALC_ACTIVE_MULTIPLIER", payload: multiplier}),
+    fetchGames: (data) => dispatch({type: "FETCH_GAMES", payload: data})
   }
 }
 
 class SportContainer extends Component {
+  componentDidMount() {
+    fetch('http://localhost:3000/api/v1/games/')
+    .then(res => res.json())
+    .then(data => {
+      this.props.fetchGames(data)
+    })
+  }
 
   addBetToTicket = () => {
     !this.props.isActiveTicket ?

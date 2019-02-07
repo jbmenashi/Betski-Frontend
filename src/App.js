@@ -4,7 +4,7 @@ import './App.css';
 import {connect} from 'react-redux';
 import Landing from './containers/Landing';
 import AccountContainer from './containers/AccountContainer'
-import NewTicketContainer from './containers/NewTicketContainer'
+import SportContainer from './containers/SportContainer'
 import OpenTicketsContainer from './containers/OpenTicketsContainer'
 import ClosedTicketsContainer from './containers/ClosedTicketsContainer'
 import Logout from './components/Logout'
@@ -35,7 +35,7 @@ class App extends Component {
             </nav>
             <Route exact path="/" render={() => (this.props.currentUserId !== undefined ? (<Redirect to="/account"/>) : (<Landing/>))}/>
             <Route path="/account" component={AccountContainer}/>
-            <Route path="/new-ticket" component={NewTicketContainer}/>
+            <Route path="/new-ticket" component={SportContainer}/>
             <Route path="/open-tickets" component={OpenTicketsContainer}/>
             <Route path='/closed-tickets' component={ClosedTicketsContainer}/>
             <Route path='/logout' render={() => (this.props.currentUserId !== undefined ? (<Logout/>) : (<Redirect to="/"/>))}/>
