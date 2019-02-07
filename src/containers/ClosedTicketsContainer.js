@@ -18,7 +18,12 @@ const mapDispatchToProps = dispatch => {
 class ClosedTicketsContainer extends Component {
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/v1/users/${this.props.currentUserId}/tickets`)
+    fetch(`http://localhost:3000/api/v1/users/${this.props.currentUserId}/tickets`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
     .then(res => res.json())
     .then(tickets => {
       this.props.fetchTickets(tickets)

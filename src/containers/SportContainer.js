@@ -39,7 +39,12 @@ const mapDispatchToProps = (dispatch) => {
 
 class SportContainer extends Component {
   componentDidMount() {
-    fetch('http://localhost:3000/api/v1/games/')
+    fetch('http://localhost:3000/api/v1/games/', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
     .then(res => res.json())
     .then(data => {
       this.props.fetchGames(data)
@@ -52,7 +57,8 @@ class SportContainer extends Component {
       method: 'POST',
       headers: {
         'Content-Type':'application/json',
-        'Accept':'application/json'
+        'Accept':'application/json',
+        Authorization: `Bearer ${localStorage.getItem("token")}`
       },
       body: JSON.stringify({
         user_id: this.props.currentUserId,
@@ -70,7 +76,8 @@ class SportContainer extends Component {
         method: 'POST',
         headers: {
           'Content-Type':'application/json',
-          'Accept':'application/json'
+          'Accept':'application/json',
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({
           game_id: this.props.currentGameId,
@@ -94,7 +101,8 @@ class SportContainer extends Component {
       method: 'POST',
       headers: {
         'Content-Type':'application/json',
-        'Accept':'application/json'
+        'Accept':'application/json',
+        Authorization: `Bearer ${localStorage.getItem("token")}`
       },
       body: JSON.stringify({
         game_id: this.props.currentGameId,

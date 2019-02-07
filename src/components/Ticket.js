@@ -29,7 +29,10 @@ class Ticket extends Component {
     let foundBet = this.props.activeBets.find(bet => bet.id === betId)
     this.props.removeBetFromActive(this.props.activeBets.findIndex(bet => bet.id === betId), foundBet.multiplier)
     fetch(`http://localhost:3000/api/v1/bets/${betId}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
     })
   }
 
@@ -53,7 +56,8 @@ class Ticket extends Component {
         method: 'PATCH',
         headers: {
           'Content-Type':'application/json',
-          'Accept':'application/json'
+          'Accept':'application/json',
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({
           balance: parseInt(this.props.currentUserBalance - this.props.wagerInput)
@@ -63,7 +67,8 @@ class Ticket extends Component {
         method: 'PATCH',
         headers: {
           'Content-Type':'application/json',
-          'Accept':'application/json'
+          'Accept':'application/json',
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({
           wager: this.props.wagerInput,
@@ -83,7 +88,10 @@ class Ticket extends Component {
     this.props.activeBets.forEach(bet => this.removeBet(bet.id))
     this.props.removeTicketFromActive()
     fetch(`http://localhost:3000/api/v1/tickets/${ticketId}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
     })
   }
 

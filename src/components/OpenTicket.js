@@ -38,7 +38,8 @@ class OpenTicket extends Component {
       method: 'PATCH',
       headers: {
         'Content-Type':'application/json',
-        'Accept':'application/json'
+        'Accept':'application/json',
+        Authorization: `Bearer ${localStorage.getItem("token")}`
       },
       body: JSON.stringify({
         closed: true,
@@ -54,7 +55,8 @@ class OpenTicket extends Component {
       method: 'PATCH',
       headers: {
         'Content-Type':'application/json',
-        'Accept':'application/json'
+        'Accept':'application/json',
+        Authorization: `Bearer ${localStorage.getItem("token")}`
       },
       body: JSON.stringify({
         balance: this.props.currentUserBalance + this.props.payout
@@ -67,7 +69,8 @@ class OpenTicket extends Component {
       method: 'PATCH',
       headers: {
         'Content-Type':'application/json',
-        'Accept':'application/json'
+        'Accept':'application/json',
+        Authorization: `Bearer ${localStorage.getItem("token")}`
       },
       body: JSON.stringify({
         closed: true,

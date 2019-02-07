@@ -18,7 +18,10 @@ class Bet extends Component {
     let foundBet = this.props.activeBets.find(bet => bet.id === betId)
     this.props.removeBetFromActive(this.props.activeBets.findIndex(bet => bet.id === betId), foundBet.multiplier)
     fetch(`http://localhost:3000/api/v1/bets/${betId}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
     })
   }
 
