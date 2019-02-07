@@ -2,7 +2,8 @@ const initialState = {
   currentUserId: undefined,
   currentUserName: undefined,
   currentUserBalance: undefined,
-  loginInput: "",
+  usernameInput: "",
+  passwordInput: "",
   games: [],
   filteredGames: [],
   currentGameId: undefined,
@@ -30,8 +31,10 @@ function reducer(state = initialState, action) {
       return {...state, games: action.payload}
     case "FETCH_TICKETS":
       return {...state, tickets: action.payload}
-    case "INPUT_LOGIN":
-      return {...state, loginInput: action.payload}
+    case "INPUT_USERNAME":
+      return {...state, usernameInput: action.payload}
+    case "INPUT_PASSWORD":
+      return {...state, passwordInput: action.payload}
     case "SUBMIT_LOGIN":
       return {...state, currentUserId: action.id, currentUserName: action.name, currentUserBalance: action.balance}
     case "SELECT_SPORT":
@@ -71,7 +74,7 @@ function reducer(state = initialState, action) {
     case 'CLOSE_TICKET':
       return {...state, tickets: [...state.tickets.slice(0, action.index), ...state.tickets.slice(action.index + 1, state.tickets.length)], closedTickets: [...state.closedTickets, action.ticket]}
     case 'LOGOUT':
-      return {...state, currentUserId: undefined, currentUserName: undefined, currentUserBalance: undefined, loginInput: '', activeBets: [], activeMultiplier: 1, betForPost: [], currentGameId: undefined, currentTicketId: undefined, filteredGames: [], games: [], isActiveTicket: false, isBetSelected: false}
+      return {...state, currentUserId: undefined, currentUserName: undefined, currentUserBalance: undefined, usernameInput: '', passwordInput: '', activeBets: [], activeMultiplier: 1, betForPost: [], currentGameId: undefined, currentTicketId: undefined, filteredGames: [], games: [], isActiveTicket: false, isBetSelected: false}
     default:
       return state
   }
