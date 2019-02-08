@@ -35,8 +35,13 @@ class Login extends Component {
     })
     .then(res => res.json())
     .then(loggedInUser => {
-      localStorage.setItem("token", loggedInUser.jwt)
-      this.props.submitLogin(loggedInUser.user.id, loggedInUser.user.username, loggedInUser.user.balance)
+      if (loggedInUser.message) {
+        window.alert("Incorrect Password")
+      }
+      else {
+        localStorage.setItem("token", loggedInUser.jwt)
+        this.props.submitLogin(loggedInUser.user.id, loggedInUser.user.username, loggedInUser.user.balance)
+      }
     })
   }
 
@@ -55,8 +60,13 @@ class Login extends Component {
     })
     .then(res => res.json())
     .then(newUser => {
-      localStorage.setItem("token", newUser.jwt)
-      this.props.submitLogin(newUser.user.id, newUser.user.username, newUser.user.balance)
+      if (newUser.error) {
+        window.alert("Username already taken")
+      }
+      else {
+        localStorage.setItem("token", newUser.jwt)
+        this.props.submitLogin(newUser.user.id, newUser.user.username, newUser.user.balance)
+      }
     })
   }
 
