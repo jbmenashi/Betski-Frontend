@@ -40,12 +40,12 @@ body {
   text-align: center;
   background-image: url('./images/sportsbook.png');
   background-size: cover;
-  height: 600px;
+  height: 900px;
 }
 
 #loginInput {
   color: white;
-  padding: 10%;
+  padding: 10%; 
 }
 
 #submitLogin {
@@ -85,7 +85,7 @@ body {
 }
 
 #gamesListColumn {
-  height: 500px;
+  height: 700px;
   overflow-y: scroll;
 }
 
