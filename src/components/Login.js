@@ -36,7 +36,7 @@ class Login extends Component {
     .then(res => res.json())
     .then(loggedInUser => {
       if (loggedInUser.message) {
-        window.alert("Incorrect Password")
+        window.alert("Incorrect Username/Password")
       }
       else {
         localStorage.setItem("token", loggedInUser.jwt)
@@ -61,7 +61,7 @@ class Login extends Component {
     .then(res => res.json())
     .then(newUser => {
       if (newUser.error) {
-        window.alert("Username already taken")
+        window.alert("Please Enter a New Username + Password")
       }
       else {
         localStorage.setItem("token", newUser.jwt)
