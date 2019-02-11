@@ -136,6 +136,23 @@ class SportContainer extends Component {
             {this.props.isActiveTicket ? <Ticket/> : <></>}
           </div>
         </div>
+
+        <div className="modal fade" id="matchupModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalCenterTitle">Matchup Info</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                sup
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="modal fade" id="betInfoModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
