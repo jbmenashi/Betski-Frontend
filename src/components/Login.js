@@ -60,6 +60,7 @@ class Login extends Component {
     })
     .then(res => res.json())
     .then(newUser => {
+      console.log(newUser);
       if (newUser.error) {
         window.alert("Please Enter a New Username + Password")
       }

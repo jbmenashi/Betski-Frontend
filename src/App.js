@@ -11,7 +11,7 @@ import Logout from './components/Logout'
 
 const mapStateToProps = (state) => {
   return {
-    currentUserId: state.currentUserId,
+    currentUserId: state.user.currentUserId,
   }
 }
 

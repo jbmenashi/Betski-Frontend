@@ -92,6 +92,7 @@ class Ticket extends Component {
 
   removeTicket = (ticketId) => {
     this.props.activeBets.forEach(bet => this.removeBet(bet.id))
+    this.props.clearActiveBets()
     this.props.removeTicketFromActive()
     fetch(`http://localhost:3000/api/v1/tickets/${ticketId}`, {
       method: 'DELETE',
