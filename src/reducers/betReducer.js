@@ -3,7 +3,9 @@ import {
   INIT_ACTIVE_MULTIPLIER,
   CALC_ACTIVE_MULTIPLIER,
   PUSH_BET_TO_ACTIVE_BETS,
-  UNSELECT_BET
+  REMOVE_BET_FROM_ACTIVE,
+  UNSELECT_BET,
+  CLEAR_ACTIVE_BETS,
 } from '../constants/ActionTypes'
 
 const initialState = {
@@ -11,6 +13,7 @@ const initialState = {
   activeMultiplier: 1,
   activeBets: [],
   isBetSelected: false,
+  betForPost: [],
 }
 
 export default (state = initialState, action) => {
@@ -23,8 +26,12 @@ export default (state = initialState, action) => {
       return {...state, activeMultiplier: state.activeMultiplier * action.payload}
     case "PUSH_BET_TO_ACTIVE_BETS":
       return {...state, activeBets: [...state.activeBets, action.payload]}
+    case "REMOVE_BET_FROM_ACTIVE":
+      return {...state, activeMultiplier: state.activeMultiplier / action.divide, activeBets: [...state.activeBets.slice(0, action.payload), ...state.activeBets.slice(action.payload + 1, state.activeBets.length)]}
     case "UNSELECT_BET":
       return {...state, isBetSelected: false}
+    case "CLEAR_ACTIVE_BETS":
+      return {...state, activeBets: [], activeMultiplier: 1, betForPost: []}
     default:
       return state
   }

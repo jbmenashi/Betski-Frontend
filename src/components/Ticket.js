@@ -20,7 +20,8 @@ const mapDispatchToProps = dispatch => {
     removeBetFromActive: (index, divide) => dispatch({type: "REMOVE_BET_FROM_ACTIVE", payload: index, divide: divide}),
     removeTicketFromActive: () => dispatch({type: "REMOVE_TICKET_FROM_ACTIVE", payload: "test"}),
     adjustBalance: (payout) => dispatch({type: 'ADJUST_BALANCE', payload: payout}),
-    unselectBet: () => dispatch({type: "UNSELECT_BET"})
+    unselectBet: () => dispatch({type: "UNSELECT_BET"}),
+    clearActiveBets: () => dispatch({type: "CLEAR_ACTIVE_BETS"})
   }
 }
 
@@ -54,6 +55,7 @@ class Ticket extends Component {
     else {
       this.props.adjustBalance(-this.props.wagerInput)
       this.props.unselectBet()
+      this.props.clearActiveBets()
       fetch(`http://localhost:3000/api/v1/users/${this.props.currentUserId}`, {
         method: 'PATCH',
         headers: {
