@@ -44,6 +44,7 @@ class MatchupInfo extends Component {
           <h3 className="teamName">{`${foundAwayTeam !== undefined ? foundAwayTeam.city : "Stats"} ${foundAwayTeam !== undefined ? foundAwayTeam.nickname : "Unavailable"}`}</h3>
           <h5><em>Overall W-L:</em> {foundAwayTeam !== undefined ? foundAwayTeam.win_loss : null}</h5>
           <h5><em>Away W-L:</em> {foundAwayTeam !== undefined ? foundAwayTeam.away_win_loss : null}</h5>
+          <h5><em>Last 10 Games W-L:</em> {foundAwayTeam !== undefined ? foundAwayTeam.last_ten : null}</h5>
           <h5><em>Points For:</em> {foundAwayTeam !== undefined ? foundAwayTeam.points_for : null}</h5>
           <h5><em>Points Against:</em> {foundAwayTeam !== undefined ? foundAwayTeam.points_against : null}</h5>
           <h5><em>Streak:</em> {foundAwayTeam !== undefined ? foundAwayTeam.streak : null}</h5>
@@ -52,6 +53,7 @@ class MatchupInfo extends Component {
           <h3 className="teamName">{`${foundHomeTeam !== undefined ? foundHomeTeam.city : "Stats"} ${foundHomeTeam !== undefined ? foundHomeTeam.nickname : "Unavailable"}`}</h3>
           <h5><em>Overall W-L:</em> {foundHomeTeam !== undefined ? foundHomeTeam.win_loss : null}</h5>
           <h5><em>Home W-L:</em> {foundHomeTeam !== undefined ? foundHomeTeam.home_win_loss : null}</h5>
+          <h5><em>Last 10 Games W-L:</em> {foundHomeTeam !== undefined ? foundHomeTeam.last_ten : null}</h5>
           <h5><em>Points For:</em> {foundHomeTeam !== undefined ? foundHomeTeam.points_for : null}</h5>
           <h5><em>Points Against:</em> {foundHomeTeam !== undefined ? foundHomeTeam.points_against : null}</h5>
           <h5><em>Streak:</em> {foundHomeTeam !== undefined ? foundHomeTeam.streak : null}</h5>

@@ -129,10 +129,10 @@ class SportContainer extends Component {
       <div className="container">
         <PickSport/>
         <div className="row">
-          <div className="col" id="gamesListColumn">
+          <div className="col-7" id="gamesListColumn">
             {this.props.filteredGames.length > 0 ? <GameList/> : <></>}
           </div>
-          <div className="col">
+          <div className="col-5">
             {this.props.isActiveTicket ? <Ticket/> : <></>}
           </div>
         </div>

@@ -88,6 +88,10 @@ body {
   margin-top: 11px;
 }
 
+.btn.btn-outline-info {
+  margin-top: 11px;
+}
+
 #gamesListColumn {
   height: 700px;
   overflow-y: scroll;
@@ -96,6 +100,21 @@ body {
 #NBAButton {
   background-color: #cc7134;
   color: white;
+}
+
+.modal-content-matchup {
+  color: white;
+  background-color: #7ba650;
+  width: 800px;
+}
+
+.modal-content-matchup button {
+  color: white;
+  background-color: #7ba650
+}
+
+.teamName {
+  text-decoration: underline;
 }
 
 /******* GAMELIST *******/
@@ -173,20 +192,4 @@ span {
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-
-.modal-content-matchup {
-  color: white;
-  background-color: #7ba650;
-  width: 800px;
-}
-
-.modal-content-matchup button {
-  color: white;
-  background-color: #7ba650
-}
-
-.teamName {
-  text-decoration: underline;
 }
