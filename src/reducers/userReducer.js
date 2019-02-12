@@ -12,7 +12,7 @@ const initialState = {
   passwordInput: "",
 }
 
-export default (state - initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case "INPUT_USERNAME":
       return {...state, usernameInput: action.payload}

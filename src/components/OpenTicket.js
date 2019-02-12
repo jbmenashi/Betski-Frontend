@@ -12,6 +12,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     adjustBalance: (payout) => dispatch({type: 'ADJUST_BALANCE', payload: payout}),
+    unselectBet: () => dispatch({type: "UNSELECT_BET"}),
     closeTicket: (index, ticket) => dispatch({type: 'CLOSE_TICKET', index: index, ticket: ticket})
   }
 }
@@ -51,6 +52,7 @@ class OpenTicket extends Component {
       this.props.closeTicket(this.props.tickets.findIndex(ticket => ticket.id === ticketId), ticket)
     })
     this.props.adjustBalance(this.props.payout)
+    this.props.unselectBet()
     fetch(`http://localhost:3000/api/v1/users/${this.props.currentUserId}`, {
       method: 'PATCH',
       headers: {
