@@ -1,11 +1,4 @@
 const initialState = {
-  currentUserId: undefined,
-  currentUserName: undefined,
-  currentUserBalance: undefined,
-  usernameInput: "",
-  passwordInput: "",
-  games: [],
-  filteredGames: [],
   currentGameId: undefined,
   isBetSelected: false,
   selectedOdds: undefined,
@@ -14,32 +7,15 @@ const initialState = {
   selectedSpread: undefined,
   selectedTotal: undefined,
   selectedBetType: undefined,
-  practiceWagerInput: 100,
-  wagerInput: 0,
   isActiveTicket: false,
   currentTicketId: undefined,
   activeBets: [],
-  activeMultiplier: 1,
   betForPost: [],
-  tickets: [],
   closedTickets: [],
-  teams: []
 }
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case "FETCH_GAMES":
-      return {...state, games: action.payload}
-    case "FETCH_TEAMS":
-      return {...state, teams: action.payload}
-    case "FETCH_TICKETS":
-      return {...state, tickets: action.payload}
-    case "INPUT_USERNAME":
-      return {...state, usernameInput: action.payload}
-    case "INPUT_PASSWORD":
-      return {...state, passwordInput: action.payload}
-    case "SUBMIT_LOGIN":
-      return {...state, currentUserId: action.id, currentUserName: action.name, currentUserBalance: action.balance}
     case "SELECT_SPORT":
       return {...state, filteredGames: state.games.filter(game => game.sport === action.payload), isBetSelected: false}
     case "SELECT_BET":
@@ -56,18 +32,11 @@ function reducer(state = initialState, action) {
         betForPost: action.betForPost,
         practiceWagerInput: 100
       }
-    case "INPUT_PRACTICE_WAGER":
-      return {...state, practiceWagerInput: action.payload}
-    case "INPUT_WAGER":
-      return {...state, wagerInput: action.payload}
+
     case "SET_CURRENT_TICKET":
       return {...state, currentTicketId: action.payload, isActiveTicket: true}
     case "PUSH_BET_TO_ACTIVE_BETS":
       return {...state, activeBets: [...state.activeBets, action.payload]}
-    case "INIT_ACTIVE_MULTIPLIER":
-      return {...state, activeMultiplier: action.payload}
-    case "CALC_ACTIVE_MULTIPLIER":
-      return {...state, activeMultiplier: state.activeMultiplier * action.payload}
     case "REMOVE_BET_FROM_ACTIVE":
       return {...state, activeMultiplier: state.activeMultiplier / action.divide, activeBets: [...state.activeBets.slice(0, action.payload), ...state.activeBets.slice(action.payload + 1, state.activeBets.length)]}
     case "REMOVE_TICKET_FROM_ACTIVE":
