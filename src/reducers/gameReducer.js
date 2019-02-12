@@ -15,15 +15,15 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_GAMES":
+    case FETCH_GAMES:
       return {...state, games: action.payload}
-    case "FETCH_TEAMS":
+    case FETCH_TEAMS:
       return {...state, teams: action.payload}
-    case "SELECT_SPORT":
+    case SELECT_SPORT:
       return {...state, filteredGames: state.games.filter(game => game.sport === action.payload)}
-    case "SET_GAME_ID":
+    case SET_GAME_ID:
       return {...state, currentGameId: action.payload}
-    case 'CLEAR_GAME_DATA':
+    case CLEAR_GAME_DATA:
       return {...state, currentGameId: undefined, filteredGames: [], games: []}
     default:
       return state

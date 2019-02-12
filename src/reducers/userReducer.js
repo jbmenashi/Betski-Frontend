@@ -16,15 +16,15 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "INPUT_USERNAME":
+    case INPUT_USERNAME:
       return {...state, usernameInput: action.payload}
-    case "INPUT_PASSWORD":
+    case INPUT_PASSWORD:
       return {...state, passwordInput: action.payload}
-    case "SUBMIT_LOGIN":
+    case SUBMIT_LOGIN:
       return {...state, currentUserId: action.id, currentUserName: action.name, currentUserBalance: action.balance}
-    case 'ADJUST_BALANCE':
+    case ADJUST_BALANCE:
       return {...state, currentUserBalance: state.currentUserBalance + action.payload}
-    case 'CLEAR_USER_DATA':
+    case CLEAR_USER_DATA:
       localStorage.clear()
       return {...state, currentUserId: undefined, currentUserName: undefined, currentUserBalance: undefined, usernameInput: "", passwordInput: ""}
     default:
