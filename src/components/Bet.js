@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 const mapStateToProps = state => {
   return {
-    activeBets: state.activeBets
+    activeBets: state.bet.activeBets
   }
 }
 const mapDispatchToProps = dispatch => {

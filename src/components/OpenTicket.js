@@ -3,10 +3,10 @@ import {connect} from 'react-redux'
 
 const mapStateToProps = state => {
   return {
-    currentUserId: state.currentUserId,
-    currentUserBalance: state.currentUserBalance,
-    tickets: state.tickets,
-    closedTickets: state.closedTickets
+    currentUserId: state.user.currentUserId,
+    currentUserBalance: state.user.currentUserBalance,
+    tickets: state.ticket.tickets,
+    closedTickets: state.ticket.closedTickets
   }
 }
 const mapDispatchToProps = dispatch => {

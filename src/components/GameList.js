@@ -4,7 +4,7 @@ import Game from './Game'
 
 const mapStateToProps = (state) => {
   return {
-    filteredGames: state.filteredGames
+    filteredGames: state.game.filteredGames
   }
 }
 

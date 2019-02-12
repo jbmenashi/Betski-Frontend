@@ -8,23 +8,23 @@ import MatchupInfo from '../components/MatchupInfo'
 
 const mapStateToProps = (state) => {
   return {
-    games: state.games,
-    filteredGames: state.filteredGames,
-    isBetSelected: state.isBetSelected,
-    currentUserId: state.currentUserId,
-    currentGameId: state.currentGameId,
-    currentTicketId: state.currentTicketId,
-    selectedOdds: state.selectedOdds,
-    selectedAwayTeam: state.selectedAwayTeam,
-    selectedHomeTeam: state.selectedHomeTeam,
-    selectedSpread: state.selectedSpread,
-    selectedTotal: state.selectedTotal,
-    selectedBetType: state.selectedBetType,
-    practiceWagerInput: state.practiceWagerInput,
-    isActiveTicket: state.isActiveTicket,
-    activeBets: state.activeBets,
-    activeMultiplier: state.activeMultiplier,
-    betForPost: state.betForPost
+    games: state.game.games,
+    filteredGames: state.game.filteredGames,
+    currentGameId: state.game.currentGameId,
+    currentUserId: state.user.currentUserId,
+    isActiveTicket: state.ticket.isActiveTicket,
+    currentTicketId: state.ticket.currentTicketId,
+    isBetSelected: state.bet.isBetSelected,
+    selectedOdds: state.bet.selectedOdds,
+    selectedAwayTeam: state.bet.selectedAwayTeam,
+    selectedHomeTeam: state.bet.selectedHomeTeam,
+    selectedSpread: state.bet.selectedSpread,
+    selectedTotal: state.bet.selectedTotal,
+    selectedBetType: state.bet.selectedBetType,
+    practiceWagerInput: state.bet.practiceWagerInput,
+    activeBets: state.bet.activeBets,
+    activeMultiplier: state.bet.activeMultiplier,
+    betForPost: state.bet.betForPost
   }
 }
 

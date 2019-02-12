@@ -3,11 +3,11 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = (state) => {
   return {
-    currentUserId: state.currentUserId,
-    currentUserName: state.currentUserName,
-    currentUserBalance: state.currentUserBalance,
-    usernameInput: state.usernameInput,
-    passwordInput: state.passwordInput
+    currentUserId: state.user.currentUserId,
+    currentUserName: state.user.currentUserName,
+    currentUserBalance: state.user.currentUserBalance,
+    usernameInput: state.user.usernameInput,
+    passwordInput: state.user.passwordInput
   }
 }
 

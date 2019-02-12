@@ -3,9 +3,9 @@ import {connect} from 'react-redux'
 
 const mapStateToProps = state => {
   return {
-    selectedAwayTeam: state.selectedAwayTeam,
-    selectedHomeTeam: state.selectedHomeTeam,
-    teams: state.teams
+    selectedAwayTeam: state.bet.selectedAwayTeam,
+    selectedHomeTeam: state.bet.selectedHomeTeam,
+    teams: state.game.teams
   }
 }
 

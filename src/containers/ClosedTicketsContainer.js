@@ -4,8 +4,8 @@ import ClosedTicket from '../components/ClosedTicket'
 
 const mapStateToProps = state => {
   return {
-    tickets: state.tickets,
-    currentUserId: state.currentUserId
+    tickets: state.ticket.tickets,
+    currentUserId: state.user.currentUserId
   }
 }
 

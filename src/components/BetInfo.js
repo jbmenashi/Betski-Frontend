@@ -3,13 +3,13 @@ import {connect} from 'react-redux'
 
 const mapStateToProps = state => {
   return {
-    selectedOdds: state.selectedOdds,
-    selectedAwayTeam: state.selectedAwayTeam,
-    selectedHomeTeam: state.selectedHomeTeam,
-    selectedSpread: state.selectedSpread,
-    selectedTotal: state.selectedTotal,
-    selectedBetType: state.selectedBetType,
-    practiceWagerInput: state.practiceWagerInput,
+    selectedOdds: state.bet.selectedOdds,
+    selectedAwayTeam: state.bet.selectedAwayTeam,
+    selectedHomeTeam: state.bet.selectedHomeTeam,
+    selectedSpread: state.bet.selectedSpread,
+    selectedTotal: state.bet.selectedTotal,
+    selectedBetType: state.bet.selectedBetType,
+    practiceWagerInput: state.bet.practiceWagerInput,
   }
 }
 

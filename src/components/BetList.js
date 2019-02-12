@@ -4,8 +4,8 @@ import Bet from './Bet.js'
 
 const mapStateToProps = state => {
   return {
-    currentTicketId: state.currentTicketId,
-    activeBets: state.activeBets
+    currentTicketId: state.ticket.currentTicketId,
+    activeBets: state.bet.activeBets
   }
 }
 

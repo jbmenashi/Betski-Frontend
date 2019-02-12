@@ -4,13 +4,13 @@ import {connect} from 'react-redux'
 
 const mapStateToProps = state => {
   return {
-    wagerInput: state.wagerInput,
-    activeBets: state.activeBets,
-    activeMultiplier: state.activeMultiplier,
-    currentUserBalance: state.currentUserBalance,
-    currentTicketId: state.currentTicketId,
-    currentUserId: state.currentUserId,
-    isActiveTicket: state.isActiveTicket
+    wagerInput: state.ticket.wagerInput,
+    currentTicketId: state.ticket.currentTicketId,
+    isActiveTicket: state.ticket.isActiveTicket,
+    activeBets: state.bet.activeBets,
+    activeMultiplier: state.bet.activeMultiplier,
+    currentUserBalance: state.user.currentUserBalance,
+    currentUserId: state.user.currentUserId,
   }
 }
 

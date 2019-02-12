@@ -4,8 +4,8 @@ import OpenTicket from '../components/OpenTicket'
 
 const mapStateToProps = state => {
   return {
-    tickets: state.tickets,
-    currentUserId: state.currentUserId
+    tickets: state.ticket.tickets,
+    currentUserId: state.user.currentUserId
   }
 }
 

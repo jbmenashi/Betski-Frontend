@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 
 const mapStateToProps = (state) => {
   return {
-    currentUserName: state.currentUserName,
-    currentUserBalance: state.currentUserBalance
+    currentUserName: state.user.currentUserName,
+    currentUserBalance: state.user.currentUserBalance
   }
 }
 
