@@ -1,29 +1,6 @@
-const initialState = {
-  currentGameId: undefined,
-  selectedOdds: undefined,
-  selectedAwayTeam: undefined,
-  selectedHomeTeam: undefined,
-  selectedSpread: undefined,
-  selectedTotal: undefined,
-  selectedBetType: undefined,
-}
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case "SELECT_BET":
-      return {
-        ...state,
-        isBetSelected: true,
-        currentGameId: action.gameId,
-        selectedOdds: action.odds,
-        selectedAwayTeam: action.awayTeam,
-        selectedHomeTeam: action.homeTeam,
-        selectedSpread: action.spread,
-        selectedTotal: action.total,
-        selectedBetType: action.betType,
-        betForPost: action.betForPost,
-        practiceWagerInput: 100
-      }
 
     case 'LOGOUT':
       localStorage.clear()
