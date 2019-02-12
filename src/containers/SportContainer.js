@@ -5,6 +5,7 @@ import BetInfo from '../components/BetInfo';
 import Ticket from '../components/Ticket';
 import PickSport from '../components/PickSport'
 import MatchupInfo from '../components/MatchupInfo'
+import {setCurrentTicket, pushBetToActiveBets, initActiveMultiplier, calcActiveMulitplier, fetchGames} from '../actions/index'
 
 const mapStateToProps = (state) => {
   return {
@@ -30,11 +31,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setCurrentTicket: (ticketId) => dispatch({type: "SET_CURRENT_TICKET", payload: ticketId}),
-    pushActiveBet: (bet) => dispatch({type: "PUSH_BET_TO_ACTIVE_BETS", payload: bet}),
-    initActiveMultiplier: (multiplier) => dispatch({type: "INIT_ACTIVE_MULTIPLIER", payload: multiplier}),
-    calcActiveMulitplier: (multiplier) => dispatch({type: "CALC_ACTIVE_MULTIPLIER", payload: multiplier}),
-    fetchGames: (data) => dispatch({type: "FETCH_GAMES", payload: data})
+    setCurrentTicket: (ticketId) => dispatch(setCurrentTicket(ticketId)),
+    pushBetToActiveBets: (bet) => dispatch(pushBetToActiveBets(bet)),
+    initActiveMultiplier: (multiplier) => dispatch(initActiveMultiplier(multiplier)),
+    calcActiveMulitplier: (multiplier) => dispatch(calcActiveMulitplier(multiplier)),
+    fetchGames: (data) => dispatch(fetchGames(data))
   }
 }
 
@@ -94,7 +95,7 @@ class SportContainer extends Component {
       })
       .then(res => res.json())
       .then(bet => {
-        this.props.pushActiveBet(bet)
+        this.props.pushBetToActiveBets(bet)
         this.props.initActiveMultiplier(bet.multiplier)
       })
     }) :
@@ -119,7 +120,7 @@ class SportContainer extends Component {
     })
     .then(res => res.json())
     .then(bet => {
-      this.props.pushActiveBet(bet)
+      this.props.pushBetToActiveBets(bet)
       this.props.calcActiveMulitplier(bet.multiplier)
     })
   }

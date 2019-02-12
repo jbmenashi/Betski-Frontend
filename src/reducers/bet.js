@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
     case PUSH_BET_TO_ACTIVE_BETS:
       return {...state, activeBets: [...state.activeBets, action.payload]}
     case REMOVE_BET_FROM_ACTIVE:
-      return {...state, activeMultiplier: state.activeMultiplier / action.divide, activeBets: [...state.activeBets.slice(0, action.payload), ...state.activeBets.slice(action.payload + 1, state.activeBets.length)]}
+      return {...state, activeMultiplier: state.activeMultiplier / action.divide, activeBets: [...state.activeBets.slice(0, action.index), ...state.activeBets.slice(action.index + 1, state.activeBets.length)]}
     case SELECT_BET:
       return {...state, isBetSelected: true, selectedOdds: action.odds, selectedAwayTeam: action.awayTeam, selectedHomeTeam: action.homeTeam, selectedSpread: action.spread, selectedTotal: action.total, selectedBetType: action.betType, betForPost: action.betForPost, practiceWagerInput: 100}
     case UNSELECT_BET:

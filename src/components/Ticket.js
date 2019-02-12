@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BetList from './BetList'
 import {connect} from 'react-redux'
+import {inputWager, removeBetFromActive, removeTicketFromActive, adjustBalance, unselectBet, clearActiveBets, resetWagerInput} from '../actions/index'
 
 const mapStateToProps = state => {
   return {
@@ -16,13 +17,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    inputWager: (event) => dispatch({type: "INPUT_WAGER", payload: event.target.value}),
-    removeBetFromActive: (index, divide) => dispatch({type: "REMOVE_BET_FROM_ACTIVE", payload: index, divide: divide}),
-    removeTicketFromActive: () => dispatch({type: "REMOVE_TICKET_FROM_ACTIVE", payload: "test"}),
-    adjustBalance: (payout) => dispatch({type: 'ADJUST_BALANCE', payload: payout}),
-    unselectBet: () => dispatch({type: "UNSELECT_BET"}),
-    clearActiveBets: () => dispatch({type: "CLEAR_ACTIVE_BETS"}),
-    resetWagerInput: () => dispatch({type: "RESET_WAGER_INPUT"})
+    inputWager: (event) => dispatch(inputWager(event)),
+    removeBetFromActive: (index, divide) => dispatch(removeBetFromActive(index, divide)),
+    removeTicketFromActive: () => dispatch(removeTicketFromActive()),
+    adjustBalance: (payout) => dispatch(adjustBalance(payout)),
+    unselectBet: () => dispatch(unselectBet()),
+    clearActiveBets: () => dispatch(clearActiveBets()),
+    resetWagerInput: () => dispatch(resetWagerInput())
   }
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import ClosedTicket from '../components/ClosedTicket'
+import {fetchTickets} from '../actions/index'
 
 const mapStateToProps = state => {
   return {
@@ -11,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchTickets: (tickets) => dispatch({type: "FETCH_TICKETS", payload: tickets})
+    fetchTickets: (tickets) => dispatch(fetchTickets(tickets))
   }
 }
 

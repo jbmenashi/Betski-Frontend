@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import {selectSport, unselectBet} from '../actions/index'
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectSport: (sport) => dispatch({type: "SELECT_SPORT", payload: sport}),
-    unselectBet: () => dispatch({type: "UNSELECT_BET"})
+    selectSport: (sport) => dispatch(selectSport(sport)),
+    unselectBet: () => dispatch(unselectBet())
   }
 }
 
