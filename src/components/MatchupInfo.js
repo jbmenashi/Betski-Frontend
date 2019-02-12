@@ -34,14 +34,14 @@ class MatchupInfo extends Component {
   }
 
   render() {
-    foundAwayTeam = this.props.teams.find(team => this.props.selectedAwayTeam.includes(team.nickname))
-    foundHomeTeam = this.props.teams.find(team => this.props.selectedHomeTeam.includes(team.nickname))
+    foundAwayTeam = this.props.teams.find(team => this.props.selectedAwayTeam.includes(team.nickname) && this.props.selectedAwayTeam.includes(team.city))
+    foundHomeTeam = this.props.teams.find(team => this.props.selectedHomeTeam.includes(team.nickname) && this.props.selectedHomeTeam.includes(team.city))
 
     return (
       <div className="container">
         <div className="row">
           <div className="col">
-          <h3 className="teamName">{`${foundAwayTeam !== undefined ? foundAwayTeam.city : null} ${foundAwayTeam !== undefined ? foundAwayTeam.nickname : null}`}</h3>
+          <h3 className="teamName">{`${foundAwayTeam !== undefined ? foundAwayTeam.city : "Stats"} ${foundAwayTeam !== undefined ? foundAwayTeam.nickname : "Unavailable"}`}</h3>
           <h5><em>Overall W-L:</em> {foundAwayTeam !== undefined ? foundAwayTeam.win_loss : null}</h5>
           <h5><em>Away W-L:</em> {foundAwayTeam !== undefined ? foundAwayTeam.away_win_loss : null}</h5>
           <h5><em>Points For:</em> {foundAwayTeam !== undefined ? foundAwayTeam.points_for : null}</h5>
@@ -49,7 +49,7 @@ class MatchupInfo extends Component {
           <h5><em>Streak:</em> {foundAwayTeam !== undefined ? foundAwayTeam.streak : null}</h5>
           </div>
           <div className="col">
-          <h3 className="teamName">{`${foundHomeTeam !== undefined ? foundHomeTeam.city : null} ${foundHomeTeam !== undefined ? foundHomeTeam.nickname : null}`}</h3>
+          <h3 className="teamName">{`${foundHomeTeam !== undefined ? foundHomeTeam.city : "Stats"} ${foundHomeTeam !== undefined ? foundHomeTeam.nickname : "Unavailable"}`}</h3>
           <h5><em>Overall W-L:</em> {foundHomeTeam !== undefined ? foundHomeTeam.win_loss : null}</h5>
           <h5><em>Home W-L:</em> {foundHomeTeam !== undefined ? foundHomeTeam.home_win_loss : null}</h5>
           <h5><em>Points For:</em> {foundHomeTeam !== undefined ? foundHomeTeam.points_for : null}</h5>
