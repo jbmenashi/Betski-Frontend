@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {removeBetFromActive} from '../actions/index'
 
 const mapStateToProps = state => {
   return {
@@ -8,7 +9,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    removeBetFromActive: (index, divide) => dispatch({type: "REMOVE_BET_FROM_ACTIVE", payload: index, divide: divide})
+    removeBetFromActive: (index, divide) => dispatch(removeBetFromActive(index, divide))
   }
 }
 

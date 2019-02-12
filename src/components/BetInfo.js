@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import {inputPracticeWager} from '../actions/index'
 
 const mapStateToProps = state => {
   return {
@@ -15,7 +16,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    inputPracticeWager: (event) => dispatch({type: "INPUT_PRACTICE_WAGER", payload: event.target.value}),
+    inputPracticeWager: (event) => dispatch(inputPracticeWager(event)),
   }
 }
 

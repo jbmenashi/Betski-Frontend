@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import {fetchTeams} from '../actions/index'
 
 const mapStateToProps = state => {
   return {
@@ -11,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchTeams: (data) => dispatch({type: "FETCH_TEAMS", payload: data})
+    fetchTeams: (data) => dispatch(fetchTeams(data))
   }
 }
 
