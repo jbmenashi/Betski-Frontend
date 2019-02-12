@@ -10,7 +10,7 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case "OLD_SELECT_BET":
+    case "SELECT_BET":
       return {
         ...state,
         isBetSelected: true,
@@ -24,12 +24,7 @@ function reducer(state = initialState, action) {
         betForPost: action.betForPost,
         practiceWagerInput: 100
       }
-    case 'ADJUST_BALANCE':
-      return {
-        ...state,
-        currentUserBalance: state.currentUserBalance + action.payload,
-        wagerInput: 0
-      }
+
     case 'LOGOUT':
       localStorage.clear()
       return {
@@ -37,8 +32,8 @@ function reducer(state = initialState, action) {
         currentUserId: undefined,
         currentUserName: undefined,
         currentUserBalance: undefined,
-        usernameInput: '',
-        passwordInput: '',
+        usernameInput: "",
+        passwordInput: "",
         currentGameId: undefined,
         currentTicketId: undefined,
         filteredGames: [],

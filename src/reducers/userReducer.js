@@ -20,6 +20,8 @@ export default (state = initialState, action) => {
       return {...state, passwordInput: action.payload}
     case "SUBMIT_LOGIN":
       return {...state, currentUserId: action.id, currentUserName: action.name, currentUserBalance: action.balance}
+    case 'ADJUST_BALANCE':
+      return {...state, currentUserBalance: state.currentUserBalance + action.payload}
     default:
       return state
   }

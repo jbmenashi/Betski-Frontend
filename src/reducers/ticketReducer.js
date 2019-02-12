@@ -1,5 +1,6 @@
 import {
   INPUT_WAGER,
+  RESET_WAGER_INPUT,
   FETCH_TICKETS,
   SET_CURRENT_TICKET,
   REMOVE_TICKET_FROM_ACTIVE,
@@ -18,6 +19,8 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case "INPUT_WAGER":
       return {...state, wagerInput: action.payload}
+    case "RESET_WAGER_INPUT":
+      return {...state, wagerInput: 0}
     case "FETCH_TICKETS":
       return {...state, tickets: action.payload}
     case "SET_CURRENT_TICKET":
