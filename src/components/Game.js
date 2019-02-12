@@ -1,23 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import {setGameId, selectBet} from '../actions/index'
 
 var moment = require('moment');
 
 const mapDispatchToProps = dispatch => {
   return {
-    setGameId: (gameId) => dispatch({type: "SET_GAME_ID", payload: gameId}),
-    selectBet: (odds, awayTeam, homeTeam, spread, total, betType, betForPost) => {
-      dispatch({
-        type: "SELECT_BET",
-        odds: odds,
-        awayTeam: awayTeam,
-        homeTeam: homeTeam,
-        spread: spread,
-        total: total,
-        betType: betType,
-        betForPost: betForPost
-      })
-    }
+    setGameId: (gameId) => dispatch(setGameId(gameId)),
+    selectBet: (odds, awayTeam, homeTeam, spread, total, betType, betForPost) => dispatch(selectBet(odds, awayTeam, homeTeam, spread, total, betType, betForPost))
   }
 }
 

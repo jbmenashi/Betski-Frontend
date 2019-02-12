@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {clearUserData, clearGameData, clearTicketData, clearActiveBets, unselectBet} from '../actions/index'
 
 const mapDispatchToProps = dispatch => {
   return {
-    clearUserData: () => dispatch({type: "CLEAR_USER_DATA"}),
-    clearGameData: () => dispatch({type: "CLEAR_GAME_DATA"}),
-    clearTicketData: () => dispatch({type: "CLEAR_TICKET_DATA"}),
-    unselectBet: () => dispatch({type: "UNSELECT_BET"}),
-    clearActiveBets: () => dispatch({type: "CLEAR_ACTIVE_BETS"})
+    clearUserData: () => dispatch(clearUserData()),
+    clearGameData: () => dispatch(clearGameData()),
+    clearTicketData: () => dispatch(clearTicketData()),
+    unselectBet: () => dispatch(unselectBet()),
+    clearActiveBets: () => dispatch(clearActiveBets())
   }
 }
 

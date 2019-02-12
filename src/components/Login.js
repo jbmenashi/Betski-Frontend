@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {inputUsername, inputPassword, submitLogin} from '../actions/index'
 
 const mapStateToProps = (state) => {
   return {
@@ -13,9 +14,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    inputUsername: (event) => dispatch({type: "INPUT_USERNAME", payload: event.target.value}),
-    inputPassword: (event) => dispatch({type: "INPUT_PASSWORD", payload: event.target.value}),
-    submitLogin: (userId, userName, userBalance) => dispatch({type: "SUBMIT_LOGIN", id: userId, name: userName, balance: userBalance })
+    inputUsername: (event) => dispatch(inputUsername(event)),
+    inputPassword: (event) => dispatch(inputPassword(event)),
+    submitLogin: (userId, userName, userBalance) => dispatch(submitLogin(userId, userName, userBalance))
   }
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import {adjustBalance, unselectBet, closeTicket, clearActiveBets, resetWagerInput} from '../actions/index'
 
 const mapStateToProps = state => {
   return {
@@ -11,11 +12,11 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    adjustBalance: (payout) => dispatch({type: 'ADJUST_BALANCE', payload: payout}),
-    unselectBet: () => dispatch({type: "UNSELECT_BET"}),
-    closeTicket: (index, ticket) => dispatch({type: 'CLOSE_TICKET', index: index, ticket: ticket}),
-    clearActiveBets: () => dispatch({type: "CLEAR_ACTIVE_BETS"}),
-    resetWagerInput: () => dispatch({type: "RESET_WAGER_INPUT"})
+    adjustBalance: (payout) => dispatch(adjustBalance(payout)),
+    unselectBet: () => dispatch(unselectBet()),
+    closeTicket: (index, ticket) => dispatch(closeTicket(index, ticket)),
+    clearActiveBets: () => dispatch(clearActiveBets()),
+    resetWagerInput: () => dispatch(resetWagerInput())
   }
 }
 
