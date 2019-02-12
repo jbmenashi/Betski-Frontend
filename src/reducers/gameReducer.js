@@ -2,7 +2,8 @@ import {
   FETCH_GAMES,
   FETCH_TEAMS,
   SELECT_SPORT,
-  SET_GAME_ID
+  SET_GAME_ID,
+  CLEAR_GAME_DATA
 } from '../constants/ActionTypes'
 
 const initialState = {
@@ -22,6 +23,8 @@ export default (state = initialState, action) => {
       return {...state, filteredGames: state.games.filter(game => game.sport === action.payload)}
     case "SET_GAME_ID":
       return {...state, currentGameId: action.payload}
+    case 'CLEAR_GAME_DATA':
+      return {...state, currentGameId: undefined, filteredGames: [], games: []}
     default:
       return state
   }

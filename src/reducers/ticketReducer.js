@@ -4,7 +4,8 @@ import {
   FETCH_TICKETS,
   SET_CURRENT_TICKET,
   REMOVE_TICKET_FROM_ACTIVE,
-  CLOSE_TICKET
+  CLOSE_TICKET,
+  CLEAR_TICKET_DATA
 } from '../constants/ActionTypes'
 
 const initialState = {
@@ -29,6 +30,8 @@ export default (state = initialState, action) => {
       return {...state, isActiveTicket: false, currentTicketId: undefined}
     case 'CLOSE_TICKET':
       return {...state, tickets: [...state.tickets.slice(0, action.index), ...state.tickets.slice(action.index + 1, state.tickets.length)], closedTickets: [...state.closedTickets, action.ticket]}
+    case 'CLEAR_TICKET_DATA':
+      return {...state, currentTicketId: undefined, isActiveTicket: false}
     default:
       return state
   }

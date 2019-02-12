@@ -3,7 +3,9 @@ import {connect} from 'react-redux'
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch({type: "LOGOUT"}),
+    clearUserData: () => dispatch({type: "CLEAR_USER_DATA"}),
+    clearGameData: () => dispatch({type: "CLEAR_GAME_DATA"}),
+    clearTicketData: () => dispatch({type: "CLEAR_TICKET_DATA"}),
     unselectBet: () => dispatch({type: "UNSELECT_BET"}),
     clearActiveBets: () => dispatch({type: "CLEAR_ACTIVE_BETS"})
   }
@@ -11,8 +13,10 @@ const mapDispatchToProps = dispatch => {
 
 class Logout extends Component {
 
-  takeLogoutActions = () => {
-    this.props.logout();
+  logout = () => {
+    this.props.clearUserData()
+    this.props.clearGameData()
+    this.props.clearTicketData()
     this.props.unselectBet()
     this.props.clearActiveBets()
   }
@@ -20,7 +24,7 @@ class Logout extends Component {
   render() {
     return (
       <div id="loginContainer">
-      <button className="btn btn-danger btn-lg" id="submitLogout" onClick={() => this.takeLogoutActions()}>Come Back Soon!</button>
+      <button className="btn btn-danger btn-lg" id="submitLogout" onClick={() => this.logout()}>Come Back Soon!</button>
       </div>
     );
   }
