@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux'
-import userReducer from './userReducer'
-import gameReducer from './gameReducer'
-import betReducer from './betReducer'
-import ticketReducer from './ticketReducer'
+import user from './user'
+import game from './game'
+import bet from './bet'
+import ticket from './ticket'
 
 const rootReducer = combineReducers({
-  userReducer,
-  gameReducer,
-  betReducer,
-  ticketReducer
+  user,
+  game,
+  bet,
+  ticket
 })
 
 export default rootReducer
