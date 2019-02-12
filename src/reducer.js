@@ -22,13 +22,16 @@ const initialState = {
   activeMultiplier: 1,
   betForPost: [],
   tickets: [],
-  closedTickets: []
+  closedTickets: [],
+  teams: []
 }
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case "FETCH_GAMES":
       return {...state, games: action.payload}
+    case "FETCH_TEAMS":
+      return {...state, teams: action.payload}
     case "FETCH_TICKETS":
       return {...state, tickets: action.payload}
     case "INPUT_USERNAME":

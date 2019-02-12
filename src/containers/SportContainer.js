@@ -4,6 +4,7 @@ import GameList from '../components/GameList';
 import BetInfo from '../components/BetInfo';
 import Ticket from '../components/Ticket';
 import PickSport from '../components/PickSport'
+import MatchupInfo from '../components/MatchupInfo'
 
 const mapStateToProps = (state) => {
   return {
@@ -125,7 +126,6 @@ class SportContainer extends Component {
 
   render() {
     return (
-
       <div className="container">
         <PickSport/>
         <div className="row">
@@ -138,8 +138,8 @@ class SportContainer extends Component {
         </div>
 
         <div className="modal fade" id="matchupModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div className="modal-dialog modal-dialog-centered" role="document">
-            <div className="modal-content">
+          <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div className="modal-content-matchup">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalCenterTitle">Matchup Info</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -147,7 +147,7 @@ class SportContainer extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                sup
+                {this.props.selectedAwayTeam ? <MatchupInfo/> : <></>}
               </div>
             </div>
           </div>

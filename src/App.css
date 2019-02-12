@@ -174,3 +174,19 @@ span {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+
+.modal-content-matchup {
+  color: white;
+  background-color: #7ba650;
+  width: 800px;
+}
+
+.modal-content-matchup button {
+  color: white;
+  background-color: #7ba650
+}
+
+.teamName {
+  text-decoration: underline;
+}

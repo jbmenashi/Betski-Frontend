@@ -57,7 +57,7 @@ class Game extends Component {
           <tbody>
             <tr>
               <td><img src={this.props.away_logo} alt={this.props.away_team} width="60" height="60"/></td>
-              <td><button type="button" className="btn btn-outline-info" data-toggle="modal" data-target="#matchupModal">{this.props.away_team}</button></td>
+              <td><button type="button" className="btn btn-outline-info" data-toggle="modal" data-target="#matchupModal" onClick={() => this.props.selectBet(this.props.id, this.props.odds[0].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[0].line, "A"], [this.props.away_team, this.props.odds[0].line, this.awaySpread(this.props.spread), this.props.odds[0].away_over, this.props.away_team, this.props.home_team])}>{this.props.away_team}</button></td>
 
               <td><button type="button" className="btn btn-outline-dark" data-toggle="modal" data-target="#betInfoModal" onClick={() => this.props.selectBet(this.props.id, this.props.odds[0].away_over, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[0].line, "A"], [this.props.away_team, this.props.odds[0].line, this.awaySpread(this.props.spread), this.props.odds[0].away_over, this.props.away_team, this.props.home_team])}>{this.props.odds[0].away_over > 0 ? '+' + this.props.odds[0].away_over : this.props.odds[0].away_over}</button></td>
 
@@ -67,7 +67,7 @@ class Game extends Component {
             </tr>
             <tr>
               <td><img src={this.props.home_logo} alt={this.props.home_team} width="60" height="60"/></td>
-              <td><button type="button" className="btn btn-outline-info" data-toggle="modal" data-target="#matchupModal">{this.props.home_team}</button></td>
+              <td><button type="button" className="btn btn-outline-info" data-toggle="modal" data-target="#matchupModal" onClick={() => this.props.selectBet(this.props.id, this.props.odds[0].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[0].line, "H"], [this.props.home_team, this.props.odds[0].line, this.homeSpread(this.props.spread), this.props.odds[0].home_under, this.props.away_team, this.props.home_team])}>{this.props.home_team}</button></td>
 
               <td><button type="button" className="btn btn-outline-dark" data-toggle="modal" data-target="#betInfoModal" onClick={() => this.props.selectBet(this.props.id, this.props.odds[0].home_under, this.props.away_team, this.props.home_team, this.props.spread, this.props.over_under, [this.props.odds[0].line, "H"], [this.props.home_team, this.props.odds[0].line, this.homeSpread(this.props.spread), this.props.odds[0].home_under, this.props.away_team, this.props.home_team])}>{this.props.odds[0].home_under > 0 ? '+' + this.props.odds[0].home_under : this.props.odds[0].home_under}</button></td>
 
